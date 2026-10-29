@@ -8,9 +8,10 @@ let warned = false;
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
 
-  // Dev only: without Supabase configured, skip the refresh so UI work doesn't need a backend.
-  // Production still throws below, so a misconfigured deploy fails loudly.
-  if (process.env.NODE_ENV !== "production" && !hasPublicEnv()) {
+  // Until auth lands, Supabase is optional: without its env the app runs on demo data.
+  // TODO(auth): once pages depend on the session, drop this skip in production so a
+  // misconfigured deploy fails loudly instead of silently running signed-out.
+  if (!hasPublicEnv()) {
     if (!warned) {
       warned = true;
       console.warn(
