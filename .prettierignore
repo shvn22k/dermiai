@@ -1,0 +1,15 @@
+# Prettier only owns the TypeScript side of the repo.
+*
+!apps/
+!apps/web/**
+!packages/
+!packages/schemas/
+!packages/schemas/ts/**
+!packages/schemas/scripts/**
+!packages/schemas/package.json
+
+apps/web/.next
+apps/web/supabase/.temp
+apps/web/src/lib/supabase/database.types.ts
+**/node_modules
+package-lock.json

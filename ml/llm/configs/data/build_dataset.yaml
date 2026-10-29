@@ -1,0 +1,10 @@
+kind: build_dataset
+experiment:
+  name: dataset-v1
+  description: CPT corpus + splits from extract-v1
+
+input_dir: data/interim/llm/extract-v1
+output_dir: data/processed/llm/dataset-v1
+chunk_tokens: 1024
+chunk_overlap: 128
+eval_fraction: 0.05

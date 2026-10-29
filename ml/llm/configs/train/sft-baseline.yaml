@@ -1,0 +1,41 @@
+# Stage 2: supervised fine-tuning on persona dialogues, on top of the CPT adapter.
+kind: train
+stage: sft
+experiment:
+  name: sft-baseline
+  description: SFT on persona-v1 dialogues from cpt-baseline
+  seed: 42
+
+model:
+  base_model: TBD/base-model-7b
+  revision: main
+  dtype: bfloat16
+  max_seq_len: 2048
+  load_in_4bit: true
+  init_adapter: outputs/llm/cpt-baseline # or a W&B artifact ref, e.g. dermiai/dermiai-llm/cpt-baseline:v0
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+data:
+  train_path: data/processed/llm/persona-v1/sft/train.jsonl
+  eval_path: data/processed/llm/persona-v1/sft/eval.jsonl
+
+optim:
+  learning_rate: 2.0e-4
+  num_epochs: 3
+  per_device_batch_size: 4
+  gradient_accumulation_steps: 4
+  warmup_ratio: 0.03
+  lr_scheduler: cosine
+  weight_decay: 0.0
+
+output_dir: outputs/llm/sft-baseline
+
+tracking:
+  project: dermiai-llm
+  group: sft
+  tags: [sft, baseline]

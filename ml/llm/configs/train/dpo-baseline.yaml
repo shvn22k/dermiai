@@ -1,0 +1,45 @@
+# Stage 3: DPO for safety + persona consistency, on top of the SFT adapter.
+kind: train
+stage: dpo
+experiment:
+  name: dpo-baseline
+  description: DPO on persona-v1 preference pairs from sft-baseline
+  seed: 42
+
+model:
+  base_model: TBD/base-model-7b
+  revision: main
+  dtype: bfloat16
+  max_seq_len: 2048
+  load_in_4bit: true
+  init_adapter: outputs/llm/sft-baseline
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+data:
+  train_path: data/processed/llm/persona-v1/dpo/train.jsonl
+  eval_path: data/processed/llm/persona-v1/dpo/eval.jsonl
+
+optim:
+  learning_rate: 5.0e-6
+  num_epochs: 1
+  per_device_batch_size: 2
+  gradient_accumulation_steps: 8
+  warmup_ratio: 0.1
+  lr_scheduler: cosine
+  weight_decay: 0.0
+
+dpo:
+  beta: 0.1
+  loss_type: sigmoid
+
+output_dir: outputs/llm/dpo-baseline
+
+tracking:
+  project: dermiai-llm
+  group: dpo
+  tags: [dpo, baseline]

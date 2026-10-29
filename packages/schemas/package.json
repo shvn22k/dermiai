@@ -1,0 +1,20 @@
+{
+  "name": "@dermiai/schemas",
+  "version": "0.2.0",
+  "private": true,
+  "description": "TypeScript mirror of the DermiAI contracts. GENERATED from the Pydantic models: never edit ts/ by hand.",
+  "type": "module",
+  "types": "./ts/index.ts",
+  "exports": {
+    ".": "./ts/index.ts"
+  },
+  "files": [
+    "ts"
+  ],
+  "scripts": {
+    "gen": "node scripts/gen-ts.mjs"
+  },
+  "devDependencies": {
+    "json-schema-to-typescript": "^15.0.4"
+  }
+}

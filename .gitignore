@@ -1,0 +1,86 @@
+# ============================================================ DATA (never committed)
+# Everything under data/ is ignored EXCEPT directory READMEs, .gitkeep and DVC pointer files.
+/data/**
+!/data/**/
+!/data/**/README.md
+!/data/**/.gitkeep
+!/data/**/*.dvc
+!/data/**/.gitignore
+
+# Raw source documents anywhere in the repo (dermatology book, film script, papers, ...)
+*.pdf
+*.epub
+*.fdx
+*.fountain
+*.docx
+*.mobi
+
+# ============================================================ MODELS / ARTIFACTS
+# root-level weights dir only; code packages (e.g. dermiai_vision/models/) must stay tracked
+/models/
+checkpoints/
+outputs/
+artifacts/
+runs/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+*.gguf
+*.onnx
+*.h5
+*.keras
+*.pkl
+*.joblib
+wandb/
+mlruns/
+lightning_logs/
+
+# ============================================================ SECRETS
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*service-account*.json
+*credentials*.json
+gcp-key*.json
+
+# ============================================================ PYTHON
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# ============================================================ NODE / WEB
+node_modules/
+.next/
+out/
+.vercel/
+next-env.d.ts
+*.tsbuildinfo
+
+# ============================================================ INFRA
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+
+# ============================================================ OS / EDITORS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp

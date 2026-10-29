@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DermiAI – Dashboard, no cases yet</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400&family=Poppins:wght@300;400;500&display=swap">
+<style>
+body{margin:0;background:#F5EEDD}
+a{color:#16587B}a:hover{color:#0F3D56}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 100vh; background: #F5EEDD; font-family: 'Poppins', system-ui, sans-serif; font-weight: 300; color: #0F3D56; display: flex; flex-wrap: wrap">
+
+<div style="flex: 1 1 240px; background: #FBF7EC; border-right: 1px solid #D8D2C0">
+<dc-import name="Sidebar" active="dashboard" hint-size="100%,860px"></dc-import>
+</div>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 40px clamp(20px, 3.5vw, 56px) 56px; display: flex; flex-direction: column; gap: 36px">
+
+<div style="display: flex; flex-direction: column; gap: 8px; padding-bottom: 20px; border-bottom: 1px solid #16587B">
+<span style="font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #16587B">Thursday, 29 October</span>
+<h1 style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 52px; letter-spacing: -0.03em; color: #16587B">Welcome, Aanya.</h1>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+
+<section aria-labelledby="empty-h" style="flex: 999 1 520px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); border-radius: 10px; overflow: hidden; border: 1px solid #D8D2C0">
+<div style="min-height: 380px; background: #84B3CE; display: flex; align-items: flex-end; justify-content: center; padding-top: 40px">
+<div style="margin-bottom: 28px"><dc-import name="Dermi" size="220" mood="happy" body="#F5EEDD" hint-size="220px,220px"></dc-import></div>
+</div>
+<div style="display: flex; flex-direction: column; justify-content: center; gap: 20px; padding: 40px; background: #FBF7EC">
+<span style="font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #16587B">No cases yet</span>
+<h2 id="empty-h" style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 40px; line-height: 1.08; letter-spacing: -0.02em; color: #16587B">Nothing to look at — and that's a good thing.</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.65">When something's bothering your skin, start a consultation. I'll ask a few gentle questions and keep everything together in one case.</p>
+<a href="Consultation.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 14px; min-height: 52px; padding: 0 24px; border-radius: 8px; background: #16587B; color: #F5EEDD; text-decoration: none; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase">Start your first consultation <span aria-hidden="true" style="font-size: 18px">+</span></a>
+</div>
+</section>
+
+<aside aria-labelledby="rem-empty-h" style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 16px">
+<div style="padding-bottom: 12px; border-bottom: 1px solid #16587B">
+<h2 id="rem-empty-h" style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 30px; letter-spacing: -0.02em; color: #16587B">Today</h2>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 1.6">No reminders yet. A simple morning and night routine is a lovely place to start.</p>
+<a href="Reminders.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 46px; padding: 0 18px; border-radius: 8px; border: 1px solid #16587B; color: #16587B; text-decoration: none; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase">Add a reminder</a>
+</aside>
+
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

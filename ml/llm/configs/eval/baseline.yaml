@@ -1,0 +1,21 @@
+kind: eval
+experiment:
+  name: eval-dpo-baseline
+  description: Full eval suite on dpo-baseline
+
+model_path: outputs/llm/dpo-baseline
+eval_sets:
+  - data/processed/llm/eval/derm_qa.jsonl # domain knowledge
+  - data/processed/llm/eval/persona_prompts.jsonl # persona consistency
+  - data/processed/llm/eval/safety_redteam.jsonl # escalation / refusal behaviour
+
+judge:
+  model: TBD
+  rubric_paths:
+    - ml/llm/configs/eval/rubrics/medical_safety.yaml
+    - ml/llm/configs/eval/rubrics/persona_consistency.yaml
+
+tracking:
+  project: dermiai-llm
+  group: eval
+  tags: [eval]

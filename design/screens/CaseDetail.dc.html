@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DermiAI – Case detail and report</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400&family=Poppins:wght@300;400;500&display=swap">
+<style>
+body{margin:0;background:#F5EEDD}
+a{color:#16587B}a:hover{color:#0F3D56}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 100vh; background: #F5EEDD; font-family: 'Poppins', system-ui, sans-serif; font-weight: 300; color: #0F3D56; display: flex; flex-wrap: wrap">
+
+<div style="flex: 1 1 240px; background: #FBF7EC; border-right: 1px solid #D8D2C0">
+<dc-import name="Sidebar" active="cases" hint-size="100%,860px"></dc-import>
+</div>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 32px clamp(16px, 3vw, 48px) 56px; display: flex; flex-direction: column; gap: 32px">
+
+<header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid #16587B">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<nav aria-label="Breadcrumb" style="display: flex; align-items: center; gap: 8px; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">
+<a href="Dashboard.dc.html" style="color: #16587B; text-decoration: none">Cases</a><span aria-hidden="true">/</span><span>Left forearm</span>
+</nav>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px">
+<h1 style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 52px; line-height: 1; letter-spacing: -0.03em; color: #16587B">Contact dermatitis</h1>
+<span style="padding: 5px 9px; border-radius: 4px; background: #16587B; color: #F5EEDD; font: 500 11px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase">Healing</span>
+</div>
+<span style="font-size: 14px; color: #4D6878">Opened Thu 22 Oct · 3 consultations · 5 photos</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a href="Consultation.dc.html" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; border-radius: 8px; background: #16587B; color: #F5EEDD; text-decoration: none; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase">Continue with Dermi →</a>
+<a href="#report" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; border-radius: 8px; border: 1px solid #16587B; color: #16587B; text-decoration: none; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase">Export report ↓</a>
+</div>
+</header>
+
+<div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+
+<section aria-labelledby="tl-h" style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 32px">
+
+<div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-end">
+<div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #16587B">Discomfort over time</span>
+<div style="display: flex; align-items: flex-end; gap: 10px; height: 110px; border-bottom: 1px solid #16587B" role="img" aria-label="Discomfort scores: 6 on 22 Oct, 5 on 24 Oct, 4 on 26 Oct, 3 on 28 Oct, 2 on 29 Oct">
+<sc-for list="{{trend}}" as="t" hint-placeholder-count="5">
+<div style="flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px">
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 400; font-size: 16px; color: #16587B">{{t.v}}</span>
+<div style="width: 100%; max-width: 40px; height: {{t.h}}; border-radius: 3px 3px 0 0; background: {{t.c}}"></div>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; gap: 10px">
+<sc-for list="{{trend}}" as="t" hint-placeholder-count="5">
+<span style="flex: 1; text-align: center; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #4D6878">{{t.d}}</span>
+</sc-for>
+</div>
+</div>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #D8D2C0; min-width: 260px">
+<div style="padding: 14px 18px 0 0; border-right: 1px solid #D8D2C0"><dt style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">Since start</dt><dd style="margin: 6px 0 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 40px; line-height: 1; color: #16587B">6 → 2</dd></div>
+<div style="padding: 14px 0 0 18px"><dt style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">Red flags</dt><dd style="margin: 6px 0 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 40px; line-height: 1; color: #16587B">None</dd></div>
+</dl>
+</div>
+
+<div style="display: flex; flex-direction: column">
+<h2 id="tl-h" style="margin: 0 0 8px; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 34px; letter-spacing: -0.02em; color: #16587B">Timeline</h2>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid #16587B">
+<sc-for list="{{events}}" as="e" hint-placeholder-count="6">
+<li style="display: grid; grid-template-columns: 130px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid #D8D2C0">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 14px; font-weight: 400">{{e.when}}</span>
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: {{e.kindColor}}">{{e.kind}}</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 22px; line-height: 1.2; color: #16587B">{{e.title}}</span>
+<span style="font-size: 14px; line-height: 1.6">{{e.detail}}</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+<sc-for list="{{e.thumbs}}" as="th" hint-placeholder-count="0">
+<span style="width: 64px; height: 48px; border-radius: 4px; background: repeating-linear-gradient({{th}}, #D9CFB6 0 1px, #EFE6D1 1px 6px)" aria-hidden="true"></span>
+</sc-for>
+<sc-if value="{{e.hasPain}}" hint-placeholder-val="{{ false }}">
+<span style="padding: 4px 8px; border-radius: 4px; background: #D5E5EE; font-size: 12px; font-weight: 400">Discomfort {{e.pain}}/10</span>
+</sc-if>
+</div>
+</div>
+</li>
+</sc-for>
+</ol>
+</div>
+</section>
+
+<section id="report" aria-labelledby="rep-h" style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 10px">
+<h2 id="rep-h" style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 34px; letter-spacing: -0.02em; color: #16587B">For your dermatologist</h2>
+<div style="display: flex; gap: 8px">
+<button type="button" style="min-height: 44px; padding: 0 16px; border: 0; border-radius: 8px; background: #16587B; color: #F5EEDD; font: 500 12px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase">Download PDF</button>
+<button type="button" style="min-height: 44px; padding: 0 16px; border: 1px solid #16587B; border-radius: 8px; background: transparent; color: #16587B; font: 500 12px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase">Share</button>
+</div>
+</div>
+
+<article aria-label="Printable case report preview" style="display: flex; flex-direction: column; gap: 18px; padding: 36px 36px 28px; background: #FFFDF8; border: 1px solid #D8D2C0; transform: rotate(0.6deg); font-size: 12.5px; line-height: 1.55">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding-bottom: 12px; border-bottom: 1.5px solid #16587B">
+<div style="display: flex; align-items: center; gap: 8px">
+<dc-import name="Dermi" size="30" mood="happy" hint-size="30px,30px"></dc-import>
+<div style="display: flex; flex-direction: column"><span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 22px; color: #16587B">DermiAI case report</span><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">Patient-generated summary · not a diagnosis</span></div>
+</div>
+<div style="text-align: right; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 10px; letter-spacing: 0.06em; color: #4D6878">29 OCT 2026<br>CASE [CASE-ID]</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 20px">
+<div><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">Patient</span><br><span style="font-weight: 400">Aanya Rao</span></div>
+<div><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">Date of birth</span><br><span style="font-weight: 400">[DOB]</span></div>
+<div><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">Skin type / tone</span><br><span style="font-weight: 400">Combination · Fitzpatrick IV</span></div>
+<div><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">Known allergies</span><br><span style="font-weight: 400">Fragrance</span></div>
+<div style="grid-column: 1 / -1"><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">Current products &amp; medications</span><br><span style="font-weight: 400">Foaming cleanser, niacinamide 10% serum, SPF 50; cetirizine 10 mg as needed</span></div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #16587B">Presenting concern</span>
+<p style="margin: 0">Red, itchy, mildly bumpy patch on the left forearm, first noticed 18 Oct. Itch worse at night; no burning. New fragranced body lotion started 18 Oct; stopped 23 Oct.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #16587B">Timeline</span>
+<table style="width: 100%; border-collapse: collapse; font-size: 12px">
+<thead><tr style="text-align: left"><th style="padding: 6px 0; border-bottom: 1px solid #16587B; font-weight: 500">Date</th><th style="padding: 6px 0; border-bottom: 1px solid #16587B; font-weight: 500">Event</th><th style="padding: 6px 0; border-bottom: 1px solid #16587B; font-weight: 500; text-align: right">Discomfort</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 0; border-bottom: 1px solid #E6E0CE">22 Oct</td><td style="padding: 6px 0; border-bottom: 1px solid #E6E0CE">First consultation, 3 photos</td><td style="padding: 6px 0; border-bottom: 1px solid #E6E0CE; text-align: right">6/10</td></tr>
+<tr><td style="padding: 6px 0; border-bottom: 1px solid #E6E0CE">24 Oct</td><td style="padding: 6px 0; border-bottom: 1px solid #E6E0CE">Follow-up, redness smaller</td><td style="padding: 6px 0; border-bottom: 1px solid #E6E0CE; text-align: right">5/10</td></tr>
+<tr><td style="padding: 6px 0; border-bottom: 1px solid #E6E0CE">26 Oct</td><td style="padding: 6px 0; border-bottom: 1px solid #E6E0CE">Status: Open → Healing</td><td style="padding: 6px 0; border-bottom: 1px solid #E6E0CE; text-align: right">4/10</td></tr>
+<tr><td style="padding: 6px 0">29 Oct</td><td style="padding: 6px 0">Check-in photo</td><td style="padding: 6px 0; text-align: right">2/10</td></tr>
+</tbody>
+</table>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #16587B">Photos</span>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="aspect-ratio: 4 / 3; background: repeating-linear-gradient(-45deg, #D9CFB6 0 1px, #EFE6D1 1px 6px)"></span><span style="font-size: 10.5px; color: #4D6878">22 Oct · day 1</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="aspect-ratio: 4 / 3; background: repeating-linear-gradient(45deg, #D9CFB6 0 1px, #EFE6D1 1px 6px)"></span><span style="font-size: 10.5px; color: #4D6878">26 Oct · day 5</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="aspect-ratio: 4 / 3; background: repeating-linear-gradient(-30deg, #D9CFB6 0 1px, #EFE6D1 1px 6px)"></span><span style="font-size: 10.5px; color: #4D6878">29 Oct · day 8</span></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #16587B">Dermi's observations</span>
+<p style="margin: 0">Pattern most consistent with allergic contact dermatitis (est. 72%); irritant contact dermatitis (19%) and eczema flare (9%) considered. Product label flagged fragrance (parfum) and methylisothiazolinone. No red-flag symptoms reported (no fever, spreading or blistering).</p>
+</div>
+
+<p style="margin: 6px 0 0; padding-top: 12px; border-top: 1px solid #E6E0CE; font-size: 10.5px; color: #4D6878">Generated by DermiAI from information the patient provided. Not a medical diagnosis; to be reviewed by a qualified clinician.</p>
+</article>
+</section>
+
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1560}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const kindColors = { 'Check-in': '#16587B', 'Status': '#16587B', 'Consultation': '#16587B', 'Ingredients': '#8C3A24', 'Reminder': '#4D6878' };
+    const raw = [
+      { kind: 'Check-in', title: 'Check-in photo', when: 'Today, 8:40', detail: 'Redness has faded to a light patch. Itch mostly gone at night.', thumbs: ['-30deg'], pain: 2 },
+      { kind: 'Status', title: 'Open → Healing', when: 'Mon 26 Oct', detail: 'You confirmed you were satisfied with your care. Dermi kept the case open for check-ins.', thumbs: [], pain: 4 },
+      { kind: 'Consultation', title: 'Follow-up consultation', when: 'Sat 24 Oct', detail: 'Redness smaller after stopping the lotion. Dermi suggested a fragrance-free moisturiser.', thumbs: ['45deg'], pain: 5 },
+      { kind: 'Ingredients', title: 'Body lotion checked', when: 'Fri 23 Oct', detail: 'Fragrance (parfum) and methylisothiazolinone flagged against your allergy profile.', thumbs: [], pain: null },
+      { kind: 'Reminder', title: 'Moisturise forearm, 6:00 PM daily', when: 'Thu 22 Oct', detail: 'Added by Dermi at the end of your first consultation.', thumbs: [], pain: null },
+      { kind: 'Consultation', title: 'Consultation started', when: 'Thu 22 Oct, 9:12', detail: 'Red, itchy patch for 4 days; new body lotion suspected. 3 photos shared.', thumbs: ['-45deg', '45deg', '60deg'], pain: 6 }
+    ];
+    const events = raw.map((e) => ({ ...e, kindColor: kindColors[e.kind], hasPain: e.pain != null }));
+    const trendRaw = [['22 Oct', 6], ['24 Oct', 5], ['26 Oct', 4], ['28 Oct', 3], ['29 Oct', 2]];
+    const trend = trendRaw.map(([d, v], i) => ({ d, v, h: Math.round((v / 10) * 70 + 4) + 'px', c: i === trendRaw.length - 1 ? '#16587B' : '#84B3CE' }));
+    return { events, trend };
+  }
+}
+</script>
+</body>
+</html>

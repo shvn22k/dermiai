@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DermiAI – Ingredient check</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400&family=Poppins:wght@300;400;500&display=swap">
+<style>
+body{margin:0;background:#F5EEDD}
+a{color:#16587B}a:hover{color:#0F3D56}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 100vh; background: #F5EEDD; font-family: 'Poppins', system-ui, sans-serif; font-weight: 300; color: #0F3D56; display: flex; flex-wrap: wrap">
+
+<div style="flex: 1 1 240px; background: #FBF7EC; border-right: 1px solid #D8D2C0">
+<dc-import name="Sidebar" active="ingredients" hint-size="100%,860px"></dc-import>
+</div>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 36px clamp(16px, 3vw, 48px) 56px; display: flex; flex-direction: column; gap: 32px">
+
+<header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px; padding-bottom: 20px; border-bottom: 1px solid #16587B">
+<h1 style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 52px; letter-spacing: -0.03em; color: #16587B">Ingredient check</h1>
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #16587B">Checked against your profile &amp; cases</span>
+</header>
+
+<div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+
+<section aria-labelledby="prod-h" style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<div style="position: relative; width: 100%; aspect-ratio: 4 / 5; border-radius: 10px; background: #84B3CE; display: flex; align-items: center; justify-content: center; overflow: hidden">
+<div style="width: 58%; height: 74%; padding: 20px 18px; box-sizing: border-box; background: #FBF7EC; transform: rotate(-3deg); display: flex; flex-direction: column; gap: 9px" aria-hidden="true">
+<span style="font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; color: #16587B">INGREDIENTS</span>
+<span style="height: 4px; width: 100%; background: #D8D2C0"></span>
+<span style="height: 4px; width: 88%; background: #D8D2C0"></span>
+<span style="height: 4px; width: 94%; background: #E8BBA9"></span>
+<span style="height: 4px; width: 76%; background: #D8D2C0"></span>
+<span style="height: 4px; width: 90%; background: #E8BBA9"></span>
+<span style="height: 4px; width: 60%; background: #D8D2C0"></span>
+</div>
+<span style="position: absolute; top: 14px; left: 14px; padding: 4px 8px; border-radius: 3px; background: #F5EEDD; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #16587B">12 ingredients read</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 id="prod-h" style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 30px; letter-spacing: -0.02em; color: #16587B">Soothing Body Lotion</h2>
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">[Brand name] · scanned Fri 23 Oct</span>
+</div>
+<div style="display: flex; gap: 8px">
+<button type="button" style="flex: 1; min-height: 48px; border: 0; border-radius: 8px; background: #16587B; color: #F5EEDD; font: 500 13px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase">Snap a label</button>
+<button type="button" style="flex: 1; min-height: 48px; border: 1px solid #16587B; border-radius: 8px; background: transparent; color: #16587B; font: 500 13px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase">Upload</button>
+</div>
+<dl style="margin: 0; display: flex; flex-direction: column; border-top: 1px solid #D8D2C0">
+<div style="display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid #D8D2C0"><dt style="font-size: 13px; color: #4D6878">Allergy</dt><dd style="margin: 0; font-size: 14px; font-weight: 400">Fragrance</dd></div>
+<div style="display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid #D8D2C0"><dt style="font-size: 13px; color: #4D6878">Skin</dt><dd style="margin: 0; font-size: 14px; font-weight: 400">Combination</dd></div>
+<div style="display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid #D8D2C0"><dt style="font-size: 13px; color: #4D6878">Open case</dt><dd style="margin: 0; font-size: 14px; font-weight: 400">Contact dermatitis · healing</dd></div>
+</dl>
+</section>
+
+<section aria-labelledby="res-h" style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+
+<div role="status" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; padding: 24px 26px; border-radius: 10px; background: #F3DDD2; border: 1px solid #E3B9A7">
+<dc-import name="Dermi" size="84" mood="concerned" hint-size="84px,84px"></dc-import>
+<div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #8C3A24">Worth pausing on</span>
+<h2 id="res-h" style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 34px; line-height: 1.1; letter-spacing: -0.02em; color: #6E2B19">Two ingredients may clash with your skin right now.</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4A2318">This looks like the lotion you started before your forearm flared. I'd keep it aside until the patch has fully healed.</p>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px; padding-bottom: 10px; border-bottom: 1px solid #16587B">
+<h3 style="margin: 0; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #16587B">The label, marked up</h3>
+<div style="display: flex; gap: 16px; font-size: 13px">
+<span><span style="padding: 0 6px; background: #EFC3B1; border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px">clash</span></span>
+<span style="text-decoration: underline wavy #16587B; text-underline-offset: 4px">watch</span>
+</div>
+</div>
+<p style="margin: 0; font-size: 18px; line-height: 2.0">
+<sc-for list="{{ingredients}}" as="i" hint-placeholder-count="12"><span style="{{i.style}}">{{i.name}}</span>{{i.sep}}</sc-for>
+</p>
+</div>
+
+<div style="display: flex; flex-direction: column; border-top: 1px solid #16587B">
+<sc-for list="{{flags}}" as="f" hint-placeholder-count="3">
+<article style="display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 20px 0; border-bottom: 1px solid #D8D2C0">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h4 style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 24px; line-height: 1.15; color: #16587B">{{f.name}}</h4>
+<span style="font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: {{f.fg}}">{{f.level}}</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 15px; line-height: 1.65">{{f.why}}</p>
+<span style="font-size: 13px; color: #4D6878">Related to · {{f.rel}}</span>
+</div>
+</article>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+<button type="button" style="min-height: 48px; padding: 0 22px; border: 0; border-radius: 8px; background: #16587B; color: #F5EEDD; font: 500 13px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase">Add to my avoid list</button>
+<a href="Consultation.dc.html" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; border-radius: 8px; border: 1px solid #16587B; color: #16587B; text-decoration: none; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase">Ask Dermi about it →</a>
+</div>
+<p style="margin: 0; font-size: 13px; color: #4D6878">Ingredient checks are a guide, not a patch test. If you're unsure, ask your dermatologist.</p>
+</section>
+
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1140}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const list = [
+      ['Aqua', 'ok'], ['Glycerin', 'ok'], ['Cetearyl Alcohol', 'ok'], ['Caprylic/Capric Triglyceride', 'ok'],
+      ['Butyrospermum Parkii (Shea) Butter', 'ok'], ['Dimethicone', 'ok'], ['Parfum (Fragrance)', 'clash'],
+      ['Methylisothiazolinone', 'clash'], ['Linalool', 'watch'], ['Limonene', 'watch'], ['Tocopherol', 'ok'], ['Sodium Hydroxide', 'ok']
+    ];
+    const rot = ['-1deg', '0.8deg'];
+    let k = 0;
+    const style = (lvl) => {
+      if (lvl === 'clash') { const r = rot[k++ % 2]; return 'display: inline-block; padding: 0 8px; margin: 0 -2px; background: #EFC3B1; color: #6E2B19; font-weight: 400; border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; transform: rotate(' + r + ');'; }
+      if (lvl === 'watch') return 'font-weight: 400; color: #16587B; text-decoration: underline wavy #16587B; text-underline-offset: 5px; text-decoration-thickness: 1.5px;';
+      return '';
+    };
+    const ingredients = list.map(([name, lvl], i) => ({ name, style: style(lvl), sep: i < list.length - 1 ? ', ' : '.' }));
+    const flags = [
+      { name: 'Parfum (Fragrance)', level: 'Clash', fg: '#8C3A24', rel: 'fragrance allergy, contact dermatitis case',
+        why: "You told me fragrance has bothered your skin before, and your forearm patch looks most like an allergic reaction. Fragrance is one of the most common triggers for this." },
+      { name: 'Methylisothiazolinone', level: 'Clash', fg: '#8C3A24', rel: 'contact dermatitis case',
+        why: "A preservative that's often linked to contact allergy, especially in leave-on products like lotions. Best avoided while your skin heals." },
+      { name: 'Linalool & Limonene', level: 'Watch', fg: '#16587B', rel: 'fragrance allergy',
+        why: "Fragrance components that can become more irritating as a product ages and meets air. Not a problem for everyone, but worth noting with your profile." }
+    ];
+    return { ingredients, flags };
+  }
+}
+</script>
+</body>
+</html>

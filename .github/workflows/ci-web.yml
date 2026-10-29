@@ -1,0 +1,39 @@
+name: ci-web
+
+on:
+  pull_request:
+    paths: &paths
+      - "apps/web/**"
+      - "packages/schemas/**" # contract changes must not break the web app
+      - "package.json"
+      - "package-lock.json"
+      - ".prettierrc.json"
+      - ".prettierignore"
+      - ".github/workflows/ci-web.yml"
+  push:
+    branches: [main]
+    paths: *paths
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NEXT_TELEMETRY_DISABLED: 1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run format:check
+      - run: npm run lint --workspace @dermiai/web
+      - run: npm run typecheck --workspace @dermiai/web
+      - run: npm test --workspace @dermiai/web
+      # Env is validated lazily at request time, so the build needs no secrets.
+      - run: npm run build --workspace @dermiai/web

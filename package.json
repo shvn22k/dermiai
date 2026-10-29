@@ -1,0 +1,19 @@
+{
+  "name": "dermiai",
+  "private": true,
+  "description": "npm workspace root: the web app and the generated TypeScript contracts. Python lives in the uv workspace.",
+  "workspaces": [
+    "apps/web",
+    "packages/schemas"
+  ],
+  "engines": {
+    "node": ">=20.9"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "3.5.3"
+  }
+}

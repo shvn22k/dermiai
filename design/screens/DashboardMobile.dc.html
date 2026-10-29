@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DermiAI – Dashboard, mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400&family=Poppins:wght@300;400;500&display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #F5EEDD; font-family: 'Poppins', system-ui, sans-serif; font-weight: 300; color: #0F3D56">
+
+<div style="height: 760px; overflow: hidden; box-sizing: border-box; padding: 56px 20px 24px; display: flex; flex-direction: column; gap: 22px">
+
+<header style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #16587B">Thu, 29 Oct</span>
+<h1 style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 36px; line-height: 1.02; letter-spacing: -0.03em; color: #16587B">Good morning, Aanya.</h1>
+</div>
+<span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: #84B3CE; display: flex; align-items: center; justify-content: center; font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 14px">AR</span>
+</header>
+
+<section style="display: flex; flex-direction: column; gap: 16px; padding: 18px 18px 18px; border-radius: 10px; background: #84B3CE">
+<div style="display: flex; gap: 12px; align-items: flex-end">
+<dc-import name="Dermi" size="72" mood="happy" body="#F5EEDD" hint-size="72px,72px"></dc-import>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #0F3D56">Your forearm looked calmer yesterday. I'll check in again tonight.</p>
+</div>
+<a href="ConsultMobile.dc.html" style="display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 0 18px; border-radius: 8px; background: #16587B; color: #F5EEDD; text-decoration: none; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase">Start new consultation <span aria-hidden="true" style="font-size: 20px">+</span></a>
+</section>
+
+<section style="display: flex; flex-direction: column">
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 8px; border-bottom: 1px solid #16587B"><h2 style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 24px; color: #16587B">Today</h2><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #16587B">1 of 4 done</span></div>
+<div style="display: grid; grid-template-columns: 64px 1fr; align-items: center; gap: 10px; min-height: 52px; border-bottom: 1px solid #D8D2C0"><span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 22px; color: #16587B">1:00<span style="font-family: 'Fustat', sans-serif; font-size: 9px; font-weight: 500"> PM</span></span><span style="font-size: 14px; font-weight: 400">Reapply sunscreen</span></div>
+<div style="display: grid; grid-template-columns: 64px 1fr; align-items: center; gap: 10px; min-height: 52px; border-bottom: 1px solid #D8D2C0"><span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 22px; color: #16587B">6:00<span style="font-family: 'Fustat', sans-serif; font-size: 9px; font-weight: 500"> PM</span></span><span style="font-size: 14px; font-weight: 400">Moisturise forearm</span></div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; padding-bottom: 8px; border-bottom: 1px solid #16587B; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 24px; color: #16587B">Your cases</h2>
+<sc-for list="{{cases}}" as="c" hint-placeholder-count="3">
+<a href="CaseDetail.dc.html" style="display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 8px; border-radius: 8px; background: #FBF7EC; border: 1px solid #D8D2C0; text-decoration: none; color: #0F3D56">
+<span style="height: 56px; border-radius: 5px; background: repeating-linear-gradient({{c.angle}}, #D9CFB6 0 1px, #EFE6D1 1px 6px)" aria-hidden="true"></span>
+<span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 19px; color: #16587B">{{c.name}}</span>
+<span style="font-size: 12px; color: #4D6878">{{c.updated}}</span>
+</span>
+<span style="{{c.chip}}">{{c.status}}</span>
+</a>
+</sc-for>
+</section>
+</div>
+
+<nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; box-sizing: border-box; padding: 6px 6px 22px; background: #FBF7EC; border-top: 1px solid #16587B; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr))">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<a href="{{t.href}}" aria-current="{{t.current}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 52px; text-decoration: none; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: {{t.color}}">
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 18px; letter-spacing: 0">{{t.num}}</span>
+<span style="padding-bottom: 3px; border-bottom: 2px solid {{t.line}}">{{t.label}}</span></a>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const chipBase = 'padding: 4px 7px; border-radius: 4px; font: 500 9px Fustat, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; ';
+    const chips = { Open: chipBase + 'background: #D5E5EE; color: #0F3D56;', Healing: chipBase + 'background: #16587B; color: #F5EEDD;' };
+    const cases = [
+      { name: 'Contact dermatitis', updated: 'Left forearm · 2h ago', status: 'Healing', angle: '-45deg' },
+      { name: 'Hormonal acne', updated: 'Jawline · yesterday', status: 'Open', angle: '45deg' },
+      { name: 'Dark spot', updated: 'Right cheek · 3 days ago', status: 'Open', angle: '-30deg' }
+    ].map((c) => ({ ...c, chip: chips[c.status] }));
+    const tabs = [
+      { label: 'Home', href: 'DashboardMobile.dc.html', on: true },
+      { label: 'Cases', href: 'CaseDetail.dc.html' },
+      { label: 'Remind', href: 'Reminders.dc.html' },
+      { label: 'Check', href: 'IngredientCheck.dc.html' },
+      { label: 'You', href: 'Onboarding.dc.html' }
+    ].map((t, i) => ({ ...t, num: '0' + (i + 1), current: t.on ? 'page' : 'false', color: t.on ? '#16587B' : '#4D6878', line: t.on ? '#16587B' : 'transparent' }));
+    return { cases, tabs };
+  }
+}
+</script>
+</body>
+</html>

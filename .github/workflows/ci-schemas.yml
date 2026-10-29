@@ -1,0 +1,51 @@
+name: ci-schemas
+
+on:
+  pull_request:
+    paths: &paths
+      - "packages/schemas/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/ci-schemas.yml"
+      - ".github/workflows/_python-area.yml"
+  push:
+    branches: [main]
+    paths: *paths
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    uses: ./.github/workflows/_python-area.yml
+    with:
+      package: dermiai-schemas
+      path: packages/schemas
+
+  # The Pydantic models are the source of truth. JSON Schema and TypeScript must be regenerated from them.
+  contract-sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: uv sync --locked --package dermiai-schemas
+      - run: npm ci --workspace @dermiai/schemas --include-workspace-root
+      - name: Regenerate JSON Schema + TypeScript
+        run: |
+          uv run --package dermiai-schemas python -m dermiai_schemas.export packages/schemas/jsonschema
+          npm run --workspace @dermiai/schemas gen
+      - name: Fail if generated contracts are stale
+        run: |
+          git diff --exit-code -- packages/schemas/jsonschema packages/schemas/ts \
+            || (echo "::error::Contracts out of date. Run 'just schemas' and commit the result." && exit 1)

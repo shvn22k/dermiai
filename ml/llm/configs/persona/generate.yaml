@@ -1,0 +1,18 @@
+kind: persona
+experiment:
+  name: persona-v1
+  description: Style profile from the film script + first synthetic dialogue batch
+
+source_path: data/interim/llm/extract-v1/film-script.txt
+character: TBD # the character Dermi's voice is based on
+style_profile_path: data/processed/llm/persona-v1/style_profile.json
+output_path: data/processed/llm/persona-v1/dialogues.jsonl
+
+generator:
+  model: TBD # hosted model used for synthetic data (key: JUDGE_API_KEY / provider-specific)
+  temperature: 0.8
+  num_dialogues: 500
+
+tracking:
+  project: dermiai-llm
+  tags: [persona, synthetic-data]

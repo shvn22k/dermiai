@@ -1,0 +1,14 @@
+-- PLACEHOLDER initial migration. Schema design is pending (see apps/web/README.md).
+--
+-- Planned tables (all with RLS enabled, owner = auth.uid()):
+--   profiles         1:1 with auth.users
+--   cases            user_id, title, body_site, status, created_at
+--   case_images      case_id, storage_path (skin-images bucket), cnn_output jsonb (CNNOutput), model_version
+--   messages         case_id, role, content, model_version, escalate_to_clinician, safety_flags
+--   reminders        case_id, due_at, channel, sent_at
+--
+-- Storage policies on storage.objects for bucket 'skin-images':
+--   object path must start with auth.uid()::text || '/', insert/select/delete only by the owner.
+--
+-- After changing migrations:  npm run db:reset  &&  npm run db:types
+select 1;

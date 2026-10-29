@@ -1,0 +1,35 @@
+# Repo-wide guardrails on every PR: secrets, large files, forbidden data, hygiene.
+# This is the one workflow without path filters, so it's safe to mark it as a required check.
+name: ci-repo
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
+      - name: Run all pre-commit hooks
+        env:
+          SKIP: no-commit-to-branch # it would fail on pushes to main
+        run: uvx --with pre-commit-uv pre-commit run --all-files --show-diff-on-failure

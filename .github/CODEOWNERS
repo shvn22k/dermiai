@@ -1,0 +1,27 @@
+# Owners are auto-requested for review. Last matching pattern wins.
+# shvn22k: ml/llm + repo · palakbansal05: ml/vision · web: everyone (Kunall04, Hardik-1226 lead)
+
+*                                   @shvn22k
+
+/ml/llm/                            @shvn22k
+/ml/vision/                         @palakbansal05
+/apps/web/                          @Kunall04 @Hardik-1226 @palakbansal05 @shvn22k
+
+# Web <-> model boundary: the proxy routes and model clients need the model owners' review too.
+/apps/web/src/lib/models/           @Kunall04 @Hardik-1226 @shvn22k @palakbansal05
+/apps/web/src/app/api/classify/     @Kunall04 @Hardik-1226 @palakbansal05
+/apps/web/src/app/api/consult/      @Kunall04 @Hardik-1226 @shvn22k
+
+# Database schema, RLS and storage policies (user health data)
+/apps/web/supabase/                 @Kunall04 @Hardik-1226 @shvn22k
+
+# Shared contracts affect every area: all owners review (Python source and generated TS).
+/packages/schemas/                  @shvn22k @palakbansal05 @Kunall04 @Hardik-1226
+
+/infra/                             @shvn22k @palakbansal05
+/.github/                           @shvn22k
+/pyproject.toml                     @shvn22k
+/uv.lock                            @shvn22k @palakbansal05
+/package.json                       @Kunall04 @Hardik-1226
+/package-lock.json                  @Kunall04 @Hardik-1226
+/docs/decisions/                    @shvn22k @palakbansal05 @Kunall04 @Hardik-1226

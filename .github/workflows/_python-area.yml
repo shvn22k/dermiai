@@ -1,0 +1,41 @@
+# Reusable job: lint + typecheck + test one Python workspace member, with only its own deps.
+name: python-area
+
+on:
+  workflow_call:
+    inputs:
+      package:
+        description: uv workspace package name (e.g. dermiai-vision)
+        required: true
+        type: string
+      path:
+        description: Area root (e.g. ml/vision)
+        required: true
+        type: string
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          python-version: "3.11"
+
+      - name: Install ${{ inputs.package }} only
+        run: uv sync --locked --package ${{ inputs.package }}
+
+      - name: Ruff lint
+        run: uv run --package ${{ inputs.package }} ruff check ${{ inputs.path }}
+
+      - name: Ruff format
+        run: uv run --package ${{ inputs.package }} ruff format --check ${{ inputs.path }}
+
+      - name: Mypy
+        run: uv run --package ${{ inputs.package }} mypy ${{ inputs.path }}/src
+
+      - name: Pytest
+        run: uv run --package ${{ inputs.package }} pytest ${{ inputs.path }}/tests

@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+/* Design tokens from design/README.md. Utilities: bg-merino, text-venice, rounded-card, font-display, ... */
+@theme {
+  --color-merino: #f5eedd; /* page ground */
+  --color-paper: #fbf7ec; /* cards, sidebar */
+  --color-sheet: #fffdf8; /* printable report */
+  --color-line: #d8d2c0; /* hairlines */
+  --color-line-strong: #c9c1aa; /* unselected chip borders */
+  --color-stone: #a9a28f; /* resolved chip border */
+  --color-track: #e6e0ce; /* bar tracks, report rules */
+  --color-rock: #84b3ce; /* fills, Dermi, charts. Never text */
+  --color-rock-tint: #d5e5ee;
+  --color-venice: #16587b; /* headings, primary actions, strong rules */
+  --color-ink: #0f3d56; /* body text */
+  --color-muted: #4d6878; /* secondary text */
+  --color-hatch-line: #d9cfb6;
+  --color-hatch-bg: #efe6d1;
+  /* Red flags and clashing ingredients only */
+  --color-alert: #a8492f;
+  --color-alert-tint: #f3ddd2;
+  --color-alert-border: #e3b9a7;
+  --color-alert-text: #8c3a24;
+  --color-alert-deep: #6e2b19;
+  --color-alert-ink: #4a2318;
+  --color-alert-on: #fff8ee;
+  --color-highlight: #efc3b1;
+  --color-highlight-line: #e8bba9;
+
+  --radius-tag: 4px;
+  --radius-btn: 8px;
+  --radius-card: 10px;
+
+  --animate-scan: scan 2.6s ease-in-out infinite;
+  --animate-breathe: breathe 1.4s ease-in-out infinite;
+  --animate-breathe-slow: breathe 2.4s ease-in-out infinite;
+
+  @keyframes scan {
+    0%,
+    100% {
+      top: 6%;
+    }
+    50% {
+      top: 88%;
+    }
+  }
+  @keyframes breathe {
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+/* Ortica (Collletttivo) is self-hosted later; until then Newsreader Light stands in. */
+@theme inline {
+  --font-display: "Ortica", var(--font-newsreader), Georgia, serif;
+  --font-label: var(--font-fustat), system-ui, sans-serif;
+  --font-body: var(--font-poppins), system-ui, sans-serif;
+}
+
+/* Fustat label voice: uppercase, tracked. Pair with a text-[11px]..text-sm size. */
+@utility caps {
+  font-family: var(--font-label);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Ortica Light heading voice */
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+@layer base {
+  body {
+    @apply bg-merino font-body font-light text-ink antialiased;
+  }
+  a {
+    @apply text-venice hover:text-ink;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-venice);
+    outline-offset: 2px;
+  }
+  dialog::backdrop {
+    background: rgb(15 61 86 / 0.45);
+  }
+}

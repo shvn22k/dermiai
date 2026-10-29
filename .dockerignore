@@ -1,0 +1,27 @@
+# Build context is the repo root; keep it small and secret-free.
+**/.venv
+**/__pycache__
+**/.mypy_cache
+**/.ruff_cache
+**/.pytest_cache
+**/node_modules
+# Model images never need the web app
+apps/
+packages/schemas/ts
+**/notebooks
+**/tests
+.git
+.dvc/cache
+data/
+models/
+checkpoints/
+outputs/
+wandb/
+docs/
+.env
+.env.*
+**/*.pt
+**/*.pth
+**/*.ckpt
+**/*.safetensors
+**/*.pdf

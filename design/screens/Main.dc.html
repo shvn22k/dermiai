@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DermiAI – Landing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400&family=Poppins:wght@300;400;500&display=swap">
+<style>
+body{margin:0;background:#F5EEDD}
+a{color:#16587B}a:hover{color:#0F3D56}
+</style>
+</helmet>
+<div style="width: 100%; background: #F5EEDD; font-family: 'Poppins', system-ui, sans-serif; font-weight: 300; color: #0F3D56; overflow: hidden">
+
+<header style="border-bottom: 1px solid #16587B">
+<div style="max-width: 1280px; margin: 0 auto; padding: 18px clamp(20px, 4vw, 48px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #16587B">
+<dc-import name="Dermi" size="40" mood="happy" hint-size="40px,40px"></dc-import>
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 28px; letter-spacing: -0.02em">DermiAI</span>
+</a>
+<nav aria-label="Primary" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase">
+<a href="#how" style="padding: 14px 14px; text-decoration: none; color: #16587B">How it works</a>
+<a href="#safety" style="padding: 14px 14px; text-decoration: none; color: #16587B">Safety</a>
+<a href="Dashboard.dc.html" style="padding: 14px 14px; text-decoration: none; color: #16587B">Sign in</a>
+<a href="Onboarding.dc.html" style="margin-left: 8px; padding: 14px 20px; border-radius: 8px; text-decoration: none; color: #F5EEDD; background: #16587B">Get started</a>
+</nav>
+</div>
+</header>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 72px clamp(20px, 4vw, 48px) 104px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(500px, 100%), 1fr)); gap: 64px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 28px; align-items: flex-start">
+<span style="font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: #16587B">A calm skin-health companion</span>
+<h1 style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: clamp(48px, 6vw, 84px); line-height: 1.0; letter-spacing: -0.035em; color: #16587B; text-wrap: balance">A gentle second pair of eyes for your skin.</h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.65; max-width: 500px; text-wrap: pretty">Snap a photo, talk it through with Dermi, and keep track of how your skin heals — in one quiet, caring place.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="Onboarding.dc.html" style="display: inline-flex; align-items: center; gap: 14px; min-height: 54px; padding: 0 26px; border-radius: 8px; background: #16587B; color: #F5EEDD; text-decoration: none; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase">Get started, it's free <span aria-hidden="true" style="font-size: 18px; letter-spacing: 0">→</span></a>
+<a href="Dashboard.dc.html" style="display: inline-flex; align-items: center; min-height: 54px; padding: 0 24px; border-radius: 8px; border: 1px solid #16587B; color: #16587B; text-decoration: none; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase">Sign in</a>
+</div>
+<div style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding-top: 18px; border-top: 1px solid #D8D2C0; max-width: 520px">
+<span style="font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #16587B">A note on care</span>
+<span style="font-size: 15px; line-height: 1.6">Dermi supports, not replaces, a dermatologist. If something needs a doctor, Dermi will tell you plainly.</span>
+</div>
+</div>
+
+<div style="position: relative; min-height: 560px">
+<div style="position: absolute; top: 0; right: 0; bottom: 0; left: 8%; border-radius: 10px; background: #84B3CE"></div>
+<div style="position: absolute; left: 22%; bottom: 40px">
+<dc-import name="Dermi" size="300" mood="happy" body="#F5EEDD" hint-size="300px,300px"></dc-import>
+</div>
+<div style="position: absolute; top: 44px; left: 0; width: 270px; padding: 20px 22px; border-radius: 4px; background: #FBF7EC; border: 1px solid #D8D2C0; transform: rotate(-2.5deg); display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #16587B">Dermi asks</span>
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 23px; line-height: 1.2; color: #0F3D56">How long has it been itchy — and is it worse at night?</span>
+</div>
+<div style="position: absolute; bottom: 64px; right: 28px; width: 220px; padding: 16px 18px; border-radius: 4px; background: #16587B; color: #F5EEDD; transform: rotate(1.8deg); display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase">Left forearm · healing</span>
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 40px; line-height: 1; letter-spacing: -0.02em">6 → 2</span>
+<span style="font-size: 13px">itch score, this week</span>
+</div>
+</div>
+</section>
+
+<section id="how" style="border-top: 1px solid #16587B; border-bottom: 1px solid #16587B">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px)">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 16px; padding: 56px 0 40px">
+<h2 style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: clamp(36px, 4vw, 52px); letter-spacing: -0.03em; color: #16587B">How it works</h2>
+<span style="font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #16587B">Three small steps, at your own pace</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); border-top: 1px solid #D8D2C0">
+<article style="display: flex; flex-direction: column; gap: 16px; padding: 36px 32px 56px 0; border-right: 1px solid #D8D2C0">
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 64px; line-height: 1; color: #84B3CE">01</span>
+<h3 style="margin: 0; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: #16587B">Snap</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.65">Take a clear photo of what's bothering you. Dermi guides you on light and distance so the picture is actually useful.</p>
+</article>
+<article style="display: flex; flex-direction: column; gap: 16px; padding: 36px 32px 56px; border-right: 1px solid #D8D2C0">
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 64px; line-height: 1; color: #84B3CE">02</span>
+<h3 style="margin: 0; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: #16587B">Talk to Dermi</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.65">Dermi asks gentle follow-up questions — when it started, what changed, how it feels — and builds a case summary as you chat.</p>
+</article>
+<article style="display: flex; flex-direction: column; gap: 16px; padding: 36px 0 56px 32px">
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 64px; line-height: 1; color: #84B3CE">03</span>
+<h3 style="margin: 0; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: #16587B">Track healing</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.65">Each concern becomes a case with photos, pain scores and reminders, so you can see it getting better over time.</p>
+</article>
+</div>
+</div>
+</section>
+
+<section id="safety" style="background: #16587B; color: #F5EEDD">
+<div style="max-width: 1280px; margin: 0 auto; padding: 96px clamp(20px, 4vw, 48px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 56px">
+<div style="display: flex; flex-direction: column; gap: 22px">
+<span style="font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase">Safety first</span>
+<h2 style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: clamp(36px, 4vw, 56px); line-height: 1.05; letter-spacing: -0.03em; text-wrap: balance">Dermi supports, not replaces, a dermatologist.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.7; max-width: 520px">Dermi helps you understand what you're seeing, keep track of changes and prepare for an appointment. It can't diagnose you or prescribe treatment.</p>
+</div>
+<dl style="margin: 0; display: flex; flex-direction: column">
+<div style="display: grid; grid-template-columns: 160px 1fr; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(245,238,221,0.35)">
+<dt style="font-size: 14px">Red flags</dt>
+<dd style="margin: 0; font-size: 16px; line-height: 1.6">If something looks serious — spreading fast, a fever, a mole that's changing — Dermi says so calmly and clearly.</dd>
+</div>
+<div style="display: grid; grid-template-columns: 160px 1fr; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(245,238,221,0.35)">
+<dt style="font-size: 14px">Doctor handoff</dt>
+<dd style="margin: 0; font-size: 16px; line-height: 1.6">Photos, timeline and symptoms in one printable report your dermatologist can read in a minute.</dd>
+</div>
+<div style="display: grid; grid-template-columns: 160px 1fr; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(245,238,221,0.35); border-bottom: 1px solid rgba(245,238,221,0.35)">
+<dt style="font-size: 14px">Your call</dt>
+<dd style="margin: 0; font-size: 16px; line-height: 1.6">Dermi never closes a consultation on its own. You decide when you're cared for.</dd>
+</div>
+</dl>
+</div>
+</section>
+
+<section style="padding: 104px clamp(20px, 4vw, 48px)">
+<div style="max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center">
+<dc-import name="Dermi" size="132" mood="happy" hint-size="132px,132px"></dc-import>
+<h2 style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 56px; letter-spacing: -0.03em; color: #16587B">Ready when you are.</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.6">Set up your skin profile in about two minutes, then start your first consultation.</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px">
+<a href="Onboarding.dc.html" style="display: inline-flex; align-items: center; min-height: 54px; padding: 0 26px; border-radius: 8px; background: #16587B; color: #F5EEDD; text-decoration: none; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase">Get started</a>
+<a href="Dashboard.dc.html" style="display: inline-flex; align-items: center; min-height: 54px; padding: 0 22px; color: #16587B; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase">I have an account →</a>
+</div>
+</div>
+</section>
+
+<footer style="border-top: 1px solid #16587B">
+<div style="max-width: 1280px; margin: 0 auto; padding: 22px clamp(20px, 4vw, 48px); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #16587B">
+<span>© 2026 DermiAI</span>
+<nav aria-label="Footer" style="display: flex; gap: 22px"><a href="#" style="text-decoration: none">Privacy</a><a href="#" style="text-decoration: none">Terms</a><a href="#" style="text-decoration: none">Contact</a></nav>
+<span>Not a substitute for medical advice</span>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# Text extraction from raw sources. Source files live in data/raw/ (DVC), never in git.
+kind: extract
+experiment:
+  name: extract-v1
+  description: First pass extraction of the dermatology book and film script
+
+sources:
+  - id: derm-book
+    path: data/raw/llm/derm_book/book.pdf # TBD: actual filename
+    kind: pdf
+  - id: film-script
+    path: data/raw/llm/film_script/script.txt # TBD: actual filename / format
+    kind: script
+
+output_dir: data/interim/llm/extract-v1

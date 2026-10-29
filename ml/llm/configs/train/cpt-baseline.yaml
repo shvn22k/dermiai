@@ -1,0 +1,41 @@
+# Stage 1: continued pretraining on dermatology text.
+# Copy this file to start a new experiment (see CONTRIBUTING.md "Adding an experiment").
+kind: train
+stage: cpt
+experiment:
+  name: cpt-baseline
+  description: LoRA continued pretraining on dataset-v1 CPT corpus
+  seed: 42
+
+model:
+  base_model: TBD/base-model-7b # e.g. an 7-8B instruct model; pin `revision` once chosen
+  revision: main
+  dtype: bfloat16
+  max_seq_len: 2048
+  load_in_4bit: true
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+data:
+  train_path: data/processed/llm/dataset-v1/cpt/train.jsonl
+  eval_path: data/processed/llm/dataset-v1/cpt/eval.jsonl
+
+optim:
+  learning_rate: 1.0e-4
+  num_epochs: 1
+  per_device_batch_size: 4
+  gradient_accumulation_steps: 8
+  warmup_ratio: 0.03
+  lr_scheduler: cosine
+  weight_decay: 0.0
+
+output_dir: outputs/llm/cpt-baseline
+
+tracking:
+  project: dermiai-llm
+  group: cpt
+  tags: [cpt, baseline]

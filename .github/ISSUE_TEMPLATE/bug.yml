@@ -1,0 +1,31 @@
+name: Bug report
+description: Something is broken
+title: "fix(<area>): "
+labels: [bug]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: [ml/llm, ml/vision, apps/web, apps/web (supabase/db), packages/schemas, infra/CI]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened vs. what you expected
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Commands, config file, git sha. Do NOT paste patient images, raw source text or secrets.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / traceback
+      render: text

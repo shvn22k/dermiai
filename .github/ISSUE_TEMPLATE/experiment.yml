@@ -1,0 +1,37 @@
+name: ML experiment
+description: Propose / track an ML experiment (becomes an exp/ branch)
+title: "exp(<area>): "
+labels: [experiment]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: [ml/llm, ml/vision]
+    validations:
+      required: true
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Hypothesis
+      placeholder: "Continued pretraining for 2 epochs instead of 1 lowers held-out derm perplexity by >5% without hurting persona score."
+    validations:
+      required: true
+  - type: textarea
+    id: setup
+    attributes:
+      label: Setup
+      description: Baseline config, what changes, data version, compute estimate (GPU type x hours).
+    validations:
+      required: true
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Success metric(s) and threshold
+    validations:
+      required: true
+  - type: textarea
+    id: results
+    attributes:
+      label: Results (fill in after)
+      description: W&B links, metric table, decision (keep / discard / follow-up).

@@ -1,0 +1,40 @@
+# PLACEHOLDER Cloud Run + GPU service for the LLM endpoint (streams SSE to the Vercel /api/consult route).
+# Requires GPU quota in the region. Check current region and GPU availability for Cloud Run first.
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: dermiai-llm-serve
+  labels:
+    app: dermiai
+    component: llm-serve
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0" # scale-to-zero = cold starts of several minutes. Set 1 for demos.
+        autoscaling.knative.dev/maxScale: "1"
+        run.googleapis.com/cpu-throttling: "false"
+        run.googleapis.com/gpu-zonal-redundancy-disabled: "true"
+    spec:
+      serviceAccountName: dermiai-llm@PROJECT_ID.iam.gserviceaccount.com
+      containerConcurrency: 4
+      timeoutSeconds: 300
+      nodeSelector:
+        run.googleapis.com/accelerator: nvidia-l4
+      containers:
+        - image: REGION-docker.pkg.dev/PROJECT_ID/dermiai/llm-serve:TAG
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "4"
+              memory: 16Gi
+              nvidia.com/gpu: "1"
+          env:
+            - name: MODEL_URI
+              value: gs://dermiai-artifacts/llm/MODEL_VERSION
+            - name: MODEL_ENDPOINT_TOKEN # must match the Vercel env var (bearer auth mode)
+              valueFrom:
+                secretKeyRef:
+                  name: MODEL_ENDPOINT_TOKEN
+                  key: latest

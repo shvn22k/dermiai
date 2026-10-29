@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DermiAI – Consultation, mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400&family=Poppins:wght@300;400;500&display=swap">
+<style>
+body{margin:0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #F5EEDD; font-family: 'Poppins', system-ui, sans-serif; font-weight: 300; color: #0F3D56; display: flex; flex-direction: column">
+
+<header style="padding: 52px 16px 12px; display: flex; flex-direction: column; gap: 12px; background: #FBF7EC; border-bottom: 1px solid #16587B">
+<div style="display: flex; align-items: center; gap: 8px">
+<a href="DashboardMobile.dc.html" aria-label="Back to dashboard" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #16587B; text-decoration: none; font-size: 22px">←</a>
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<h1 style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 24px; letter-spacing: -0.02em; color: #16587B">Itchy patch, forearm</h1>
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">Thu 22 Oct · 9:12 AM</span>
+</div>
+<button type="button" style="min-height: 44px; padding: 0 12px; border: 0; border-radius: 8px; background: #16587B; color: #F5EEDD; font: 500 11px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase">Photo</button>
+</div>
+<button type="button" aria-expanded="{{expandedStr}}" onClick="{{toggleSummary}}" style="display: flex; flex-direction: column; gap: 10px; width: 100%; padding: 12px 14px; border: 0; border-radius: 8px; background: #84B3CE; color: #0F3D56; font-family: 'Poppins', sans-serif; font-weight: 300; text-align: left; cursor: pointer">
+<span style="display: flex; align-items: center; gap: 10px; width: 100%">
+<span style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase">Live summary</span>
+<span style="font-size: 14px; font-weight: 400">Allergic contact dermatitis · 72%</span>
+</span>
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 24px">{{pain}}<span style="font-size: 13px">/10</span></span>
+<span aria-hidden="true" style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 18px; width: 16px; text-align: center">{{chev}}</span>
+</span>
+<sc-if value="{{expanded}}" hint-placeholder-val="{{ false }}">
+<span style="display: flex; flex-wrap: wrap; gap: 6px">
+<span style="padding: 3px 8px; border-radius: 4px; background: #F5EEDD; font-size: 12px">Itchy</span>
+<span style="padding: 3px 8px; border-radius: 4px; background: #F5EEDD; font-size: 12px">Red patch</span>
+<span style="padding: 3px 8px; border-radius: 4px; background: #F5EEDD; font-size: 12px">Worse at night</span>
+<span style="padding: 3px 8px; border-radius: 4px; background: #F5EEDD; font-size: 12px">New lotion</span>
+<span style="padding: 3px 8px; border-radius: 4px; background: #16587B; color: #F5EEDD; font: 500 10px 'Fustat', sans-serif; letter-spacing: 0.1em">OPEN</span>
+</span>
+</sc-if>
+</button>
+</header>
+
+<ol style="flex: 1; overflow: hidden; list-style: none; margin: 0; padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px">
+<li style="display: flex; gap: 8px; align-items: flex-start; justify-content: flex-end">
+<div style="max-width: 78%; padding: 12px 14px; border-radius: 14px 4px 14px 14px; background: #D5E5EE; font-size: 14px; line-height: 1.55">Yes — I switched to a new body lotion on Sunday.</div>
+</li>
+<li style="display: flex; gap: 8px; align-items: flex-start">
+<dc-import name="Dermi" size="32" mood="happy" hint-size="32px,32px"></dc-import>
+<div style="max-width: 78%; padding: 12px 14px; border-radius: 4px 14px 14px 14px; background: #FBF7EC; border: 1px solid #D8D2C0; font-size: 14px; line-height: 1.55">That's a useful clue. Does it burn or sting, or is it mostly itchy?</div>
+</li>
+<li style="display: flex; gap: 8px; align-items: flex-start; justify-content: flex-end">
+<div style="max-width: 78%; padding: 12px 14px; border-radius: 14px 4px 14px 14px; background: #D5E5EE; font-size: 14px; line-height: 1.55">Mostly itchy. Worse at night.</div>
+</li>
+<li style="display: flex; gap: 8px; align-items: flex-start">
+<dc-import name="Dermi" size="32" mood="happy" hint-size="32px,32px"></dc-import>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 4px 14px 14px 14px; background: #FBF7EC; border: 1px solid #D8D2C0">
+<span id="m-pain-q" style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 19px; line-height: 1.3; color: #16587B">On a scale of 1 to 10, how would you rate your discomfort?</span>
+<div role="group" aria-labelledby="m-pain-q" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px">
+<sc-for list="{{scale}}" as="p" hint-placeholder-count="10">
+<button type="button" aria-pressed="{{p.pressed}}" aria-label="{{p.n}} out of 10" onClick="{{p.pick}}" style="{{p.style}}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.2 3.3c4.7-.1 8.6 3.7 8.5 8.6.1 4.8-3.8 8.5-8.7 8.4-4.7.2-8.4-3.8-8.3-8.6C3.6 7 7.4 3.2 12.2 3.3z"></path><path d="M9 10.2h.01M15.2 9.9h.01" stroke-width="2.4"></path><path d="{{p.mouth}}"></path></svg>
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 400; font-size: 15px">{{p.n}}</span>
+</button>
+</sc-for>
+</div>
+<span style="font-size: 13px; font-weight: 400; color: #16587B">{{painText}}</span>
+</div>
+</li>
+</ol>
+
+<form style="display: flex; align-items: center; gap: 8px; padding: 10px 12px 30px; background: #FBF7EC; border-top: 1px solid #D8D2C0">
+<button type="button" aria-label="Attach a photo" style="width: 44px; height: 44px; flex-shrink: 0; border: 1px solid #16587B; border-radius: 8px; background: transparent; color: #16587B; font: 300 22px 'Poppins', sans-serif">+</button>
+<label for="m-composer" class="sr-only">Message Dermi</label>
+<input id="m-composer" type="text" placeholder="Tell Dermi more…" style="flex: 1; min-width: 0; min-height: 44px; padding: 0 4px; border: 0; border-bottom: 1.5px solid #16587B; background: transparent; font: 300 15px 'Poppins', sans-serif; color: #0F3D56">
+<button type="button" style="min-height: 44px; padding: 0 14px; flex-shrink: 0; border: 0; border-radius: 8px; background: #16587B; color: #F5EEDD; font: 500 11px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase">Send</button>
+</form>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { pain: 6, expanded: false };
+  }
+  renderVals() {
+    const pain = this.state.pain;
+    const bands = (n) => n <= 3 ? 'Mild' : n <= 6 ? 'Moderate — noticeably uncomfortable' : n <= 8 ? 'Severe' : 'Very severe';
+    const scale = Array.from({ length: 10 }, (_, i) => {
+      const n = i + 1; const c = 3 - i * 0.67; const on = pain === n;
+      return {
+        n, pressed: String(on), mouth: 'M8.2 15.6 Q12 ' + (15.5 + c).toFixed(1) + ' 15.9 15.3',
+        pick: () => this.setState({ pain: n }),
+        style: 'display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 58px; padding: 6px 0; border-radius: 6px; cursor: pointer; ' + (on ? 'border: 1.5px solid #16587B; background: #16587B; color: #F5EEDD;' : 'border: 1px solid #D8D2C0; background: #F5EEDD; color: #16587B;')
+      };
+    });
+    const ex = this.state.expanded;
+    return {
+      scale, pain, painText: pain + ' — ' + bands(pain),
+      expanded: ex, expandedStr: String(ex), chev: ex ? '–' : '+',
+      toggleSummary: () => this.setState({ expanded: !ex })
+    };
+  }
+}
+</script>
+</body>
+</html>

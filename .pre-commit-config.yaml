@@ -1,0 +1,85 @@
+# Install once:  uv tool install pre-commit --with pre-commit-uv   then   pre-commit install
+# Run on all files:  just lint   (== pre-commit run --all-files)
+# Bump hook versions: pre-commit autoupdate
+default_language_version:
+  python: python3.11
+
+repos:
+  # ---------------------------------------------------------------- hygiene
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+      - id: check-toml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-added-large-files
+        args: [--maxkb=5120] # block files > 5 MB (use DVC instead)
+        exclude: ^uv\.lock$
+      - id: detect-private-key
+      - id: no-commit-to-branch
+        args: [--branch, main]
+
+  # ---------------------------------------------------------------- secrets
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.0
+    hooks:
+      - id: gitleaks
+
+  # ---------------------------------------------------------------- data guardrails
+  - repo: local
+    hooks:
+      - id: forbid-data-files
+        name: forbid raw data / weights / source documents
+        # Belt-and-braces on top of .gitignore (which `git add -f` bypasses).
+        # Raw source texts (dermatology book, film script) must never be committed.
+        language: fail
+        entry: >-
+          Data, model weights and source documents must not be committed.
+          Track them with DVC (see data/README.md).
+        files: >-
+          (?x)^(
+            data/(?!.*(README\.md|\.gitkeep|\.dvc|\.gitignore)$).*
+            |.*\.(pdf|epub|fdx|fountain|docx|mobi)
+            |.*\.(pt|pth|ckpt|safetensors|bin|gguf|onnx|h5|pkl|joblib)
+          )$
+
+  # ---------------------------------------------------------------- notebooks
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.9.1
+    hooks:
+      - id: nbstripout # outputs can contain images/data; never commit them
+
+  # ---------------------------------------------------------------- python
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.3
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v2.4.0
+    hooks:
+      - id: mypy
+        # Fast isolated check of package sources. CI runs mypy per area with real deps.
+        files: ^(packages/[^/]+|services/[^/]+|ml/[^/]+)/src/
+        additional_dependencies:
+          - pydantic>=2.9
+          - types-PyYAML
+
+  # ---------------------------------------------------------------- web
+  - repo: local
+    hooks:
+      - id: prettier
+        name: prettier (TypeScript side; scope set by .prettierignore)
+        language: node
+        entry: prettier --check --ignore-unknown
+        files: ^(apps/web|packages/schemas)/
+        additional_dependencies: ["prettier@3.5.3"]

@@ -1,0 +1,5 @@
+kind: serve
+model_path: outputs/llm/dpo-baseline
+host: 0.0.0.0
+port: 8082
+max_new_tokens: 512

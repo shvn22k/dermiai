@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DermiAI – Consultation</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400&family=Poppins:wght@300;400;500&display=swap">
+<style>
+body{margin:0;background:#F5EEDD}
+a{color:#16587B}a:hover{color:#0F3D56}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@keyframes dmScan{0%{top:6%}50%{top:88%}100%{top:6%}}
+@keyframes dmPulse{0%,100%{opacity:.3}50%{opacity:1}}
+</style>
+</helmet>
+<div style="position: relative; width: 100%; min-height: 100vh; background: #F5EEDD; font-family: 'Poppins', system-ui, sans-serif; font-weight: 300; color: #0F3D56; display: flex; flex-wrap: wrap">
+
+<div style="flex: 1 1 240px; background: #FBF7EC; border-right: 1px solid #D8D2C0">
+<dc-import name="Sidebar" active="cases" hint-size="100%,860px"></dc-import>
+</div>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px clamp(16px, 2.5vw, 40px) 40px; display: flex; flex-direction: column; gap: 24px">
+
+<header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid #16587B">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<nav aria-label="Breadcrumb" style="display: flex; align-items: center; gap: 8px; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">
+<a href="Dashboard.dc.html" style="color: #16587B; text-decoration: none">Cases</a><span aria-hidden="true">/</span><span>Consultation · Thu 22 Oct, 9:12 AM</span>
+</nav>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px">
+<h1 style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 40px; line-height: 1.05; letter-spacing: -0.03em; color: #16587B">Itchy patch, left forearm</h1>
+<span style="{{statusChip}}">{{statusLabel}}</span>
+</div>
+</div>
+<a href="CaseDetail.dc.html" style="display: inline-flex; align-items: center; min-height: 46px; padding: 0 18px; border-radius: 8px; border: 1px solid #16587B; color: #16587B; text-decoration: none; font-family: 'Fustat', system-ui, sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase">Export report ↓</a>
+</header>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+
+<section aria-label="Conversation with Dermi" style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; border-radius: 10px; background: #FBF7EC; border: 1px solid #D8D2C0">
+<ol style="list-style: none; margin: 0; padding: 28px clamp(16px, 2.5vw, 32px); display: flex; flex-direction: column; gap: 20px">
+
+<li style="display: flex; gap: 12px; align-items: flex-start">
+<dc-import name="Dermi" size="38" mood="happy" hint-size="38px,38px"></dc-import>
+<div style="display: flex; flex-direction: column; gap: 6px; max-width: 78%">
+<div style="padding: 14px 18px; border-radius: 4px 14px 14px 14px; background: #F5EEDD; font-size: 15px; line-height: 1.6">Hi Aanya, I'm here with you. What's bothering your skin today?</div>
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #4D6878">Dermi · 9:12</span>
+</div>
+</li>
+
+<li style="display: flex; gap: 12px; align-items: flex-start; justify-content: flex-end">
+<div style="display: flex; flex-direction: column; gap: 6px; align-items: flex-end; max-width: 78%">
+<div style="padding: 14px 18px; border-radius: 14px 4px 14px 14px; background: #D5E5EE; font-size: 15px; line-height: 1.6">I've had a red, itchy patch on my left forearm for about 4 days. It's getting a bit bumpy.</div>
+<div style="width: 240px; height: 170px; border-radius: 6px; background: repeating-linear-gradient(-45deg, #D9CFB6 0 1px, #EFE6D1 1px 7px); display: flex; align-items: flex-end; padding: 10px; box-sizing: border-box"><span style="padding: 3px 7px; border-radius: 3px; background: #FBF7EC; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase">Photo · left forearm</span></div>
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #4D6878">You · 9:14</span>
+</div>
+<span style="width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; background: #84B3CE; display: flex; align-items: center; justify-content: center; font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 13px" aria-hidden="true">AR</span>
+</li>
+
+<li style="display: flex; gap: 12px; align-items: flex-start">
+<dc-import name="Dermi" size="38" mood="thinking" hint-size="38px,38px"></dc-import>
+<div style="display: flex; flex-direction: column; gap: 6px; max-width: 78%">
+<div style="display: flex; flex-direction: column; gap: 12px; padding: 14px 18px; border-radius: 4px 14px 14px 14px; background: #F5EEDD; font-size: 15px; line-height: 1.6">
+<span>Thank you — the photo is clear and really helps. A few gentle questions so I understand it better.</span>
+<span style="padding-top: 10px; border-top: 1px solid #D8D2C0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 21px; line-height: 1.3; color: #16587B">Have you started any new soap, detergent, lotion or skincare in the last week?</span>
+</div>
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #4D6878">Dermi · 9:14</span>
+</div>
+</li>
+
+<li style="display: flex; gap: 12px; align-items: flex-start; justify-content: flex-end">
+<div style="padding: 14px 18px; border-radius: 14px 4px 14px 14px; background: #D5E5EE; font-size: 15px; line-height: 1.6; max-width: 78%">Yes — I switched to a new body lotion on Sunday.</div>
+<span style="width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; background: #84B3CE; display: flex; align-items: center; justify-content: center; font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 13px" aria-hidden="true">AR</span>
+</li>
+
+<li style="display: flex; gap: 12px; align-items: flex-start">
+<dc-import name="Dermi" size="38" mood="happy" hint-size="38px,38px"></dc-import>
+<div style="padding: 14px 18px; border-radius: 4px 14px 14px 14px; background: #F5EEDD; font-size: 15px; line-height: 1.6; max-width: 78%">That's a really useful clue. Does the patch burn or sting, or is it mostly itchy?</div>
+</li>
+
+<li style="display: flex; gap: 12px; align-items: flex-start; justify-content: flex-end">
+<div style="padding: 14px 18px; border-radius: 14px 4px 14px 14px; background: #D5E5EE; font-size: 15px; line-height: 1.6; max-width: 78%">Mostly itchy. It's worse at night.</div>
+<span style="width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; background: #84B3CE; display: flex; align-items: center; justify-content: center; font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 13px" aria-hidden="true">AR</span>
+</li>
+
+<li style="display: flex; gap: 12px; align-items: flex-start">
+<dc-import name="Dermi" size="38" mood="happy" hint-size="38px,38px"></dc-import>
+<div style="display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; max-width: 620px">
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 16px 18px 18px; border-radius: 4px 14px 14px 14px; background: #F5EEDD">
+<span id="pain-q" style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 22px; line-height: 1.3; color: #16587B">On a scale of 1 to 10, how would you rate your discomfort?</span>
+<div role="group" aria-labelledby="pain-q" style="display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px">
+<sc-for list="{{scale}}" as="p" hint-placeholder-count="10">
+<button type="button" aria-pressed="{{p.pressed}}" aria-label="{{p.aria}}" onClick="{{p.pick}}" style="{{p.style}}">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.2 3.3c4.7-.1 8.6 3.7 8.5 8.6.1 4.8-3.8 8.5-8.7 8.4-4.7.2-8.4-3.8-8.3-8.6C3.6 7 7.4 3.2 12.2 3.3z"></path><path d="M9 10.2h.01M15.2 9.9h.01" stroke-width="2.4"></path><path d="{{p.mouth}}"></path></svg>
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 400; font-size: 17px">{{p.n}}</span>
+</button>
+</sc-for>
+</div>
+<div style="display: flex; justify-content: space-between; gap: 12px; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #4D6878"><span>Barely noticeable</span><span>Worst imaginable</span></div>
+<span style="font-size: 15px; font-weight: 400; color: #16587B">{{painText}}</span>
+</div>
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #4D6878">Dermi · 9:18 · tap a face, you can change it later</span>
+</div>
+</li>
+
+<sc-if value="{{isAnalyzing}}" hint-placeholder-val="{{ false }}">
+<li style="display: flex; gap: 12px; align-items: flex-start; justify-content: flex-end">
+<div style="width: 220px; height: 156px; border-radius: 6px; background: repeating-linear-gradient(45deg, #D9CFB6 0 1px, #EFE6D1 1px 7px); display: flex; align-items: flex-end; padding: 10px; box-sizing: border-box"><span style="padding: 3px 7px; border-radius: 3px; background: #FBF7EC; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase">Photo · close-up</span></div>
+<span style="width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; background: #84B3CE; display: flex; align-items: center; justify-content: center; font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 13px" aria-hidden="true">AR</span>
+</li>
+<li style="display: flex; gap: 12px; align-items: flex-start" aria-live="polite">
+<dc-import name="Dermi" size="38" mood="thinking" hint-size="38px,38px"></dc-import>
+<div style="display: flex; gap: 20px; flex-wrap: wrap; padding: 18px; border-radius: 4px 14px 14px 14px; background: #F5EEDD; max-width: 620px">
+<div style="position: relative; width: 150px; height: 120px; border-radius: 6px; overflow: hidden; background: repeating-linear-gradient(45deg, #D9CFB6 0 1px, #EFE6D1 1px 7px)">
+<div style="position: absolute; left: 0; right: 0; height: 2px; background: #16587B; animation: dmScan 2.6s ease-in-out infinite"></div>
+</div>
+<div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 24px; color: #16587B">Looking closely at your photo…</span>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; font-size: 14px">
+<li style="display: grid; grid-template-columns: 28px 1fr auto; padding: 7px 0; border-top: 1px solid #D8D2C0"><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; color: #16587B">01</span><span>Sharp and well lit</span><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; color: #16587B">DONE</span></li>
+<li style="display: grid; grid-template-columns: 28px 1fr auto; padding: 7px 0; border-top: 1px solid #D8D2C0"><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; color: #16587B">02</span><span>Mapping the affected area</span><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; color: #16587B">DONE</span></li>
+<li style="display: grid; grid-template-columns: 28px 1fr auto; padding: 7px 0; border-top: 1px solid #D8D2C0; border-bottom: 1px solid #D8D2C0"><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; color: #16587B">03</span><span>Comparing with your profile</span><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; color: #16587B; animation: dmPulse 1.4s ease-in-out infinite">NOW</span></li>
+</ol>
+<span style="font-size: 13px; color: #4D6878">Usually takes a few seconds.</span>
+</div>
+</div>
+</li>
+</sc-if>
+
+<sc-if value="{{isClosing}}" hint-placeholder-val="{{ false }}">
+<li style="display: flex; gap: 12px; align-items: flex-start; justify-content: flex-end">
+<div style="padding: 14px 18px; border-radius: 14px 4px 14px 14px; background: #D5E5EE; font-size: 15px; line-height: 1.6; max-width: 78%">I stopped the lotion yesterday and the itching already feels better.</div>
+<span style="width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; background: #84B3CE; display: flex; align-items: center; justify-content: center; font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 13px" aria-hidden="true">AR</span>
+</li>
+<li style="display: flex; gap: 12px; align-items: flex-start">
+<dc-import name="Dermi" size="38" mood="happy" hint-size="38px,38px"></dc-import>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 16px 18px; border-radius: 4px 14px 14px 14px; background: #F5EEDD; font-size: 15px; line-height: 1.6; max-width: 620px">
+<span>I'm glad it's easing. Here's what we worked out together:</span>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+<li style="display: grid; grid-template-columns: 30px 1fr; padding: 8px 0; border-top: 1px solid #D8D2C0"><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 12px; color: #16587B">01</span>This looks most like an allergic reaction to the new lotion.</li>
+<li style="display: grid; grid-template-columns: 30px 1fr; padding: 8px 0; border-top: 1px solid #D8D2C0"><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 12px; color: #16587B">02</span>Keep it aside, and use a fragrance-free moisturiser twice a day.</li>
+<li style="display: grid; grid-template-columns: 30px 1fr; padding: 8px 0; border-top: 1px solid #D8D2C0"><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 12px; color: #16587B">03</span>I've set a 6:00 PM reminder and will ask for a photo in two days.</li>
+<li style="display: grid; grid-template-columns: 30px 1fr; padding: 8px 0; border-top: 1px solid #D8D2C0"><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 12px; color: #16587B">04</span>If it spreads, blisters or you get a fever, please see a dermatologist.</li>
+</ol>
+</div>
+</li>
+<li style="display: flex; gap: 12px; align-items: flex-start">
+<dc-import name="Dermi" size="38" mood="happy" hint-size="38px,38px"></dc-import>
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 4px 14px 14px 14px; background: #84B3CE; max-width: 620px">
+<span id="satisfied-q" style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 28px; line-height: 1.15; letter-spacing: -0.01em; color: #0F3D56">Are you satisfied with your care?</span>
+<sc-if value="{{askSatisfied}}" hint-placeholder-val="{{ true }}">
+<div role="group" aria-labelledby="satisfied-q" style="display: flex; flex-wrap: wrap; gap: 10px">
+<button type="button" onClick="{{sayYes}}" style="min-height: 48px; padding: 0 22px; border: 0; border-radius: 8px; background: #16587B; color: #F5EEDD; font: 500 13px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer">Yes, I'm satisfied</button>
+<button type="button" onClick="{{sayNo}}" style="min-height: 48px; padding: 0 22px; border: 1px solid #0F3D56; border-radius: 8px; background: transparent; color: #0F3D56; font: 500 13px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer">Not yet</button>
+</div>
+<span style="font-size: 14px; color: #0F3D56">I'll keep this consultation open until you decide.</span>
+</sc-if>
+<sc-if value="{{saidYes}}" hint-placeholder-val="{{ false }}">
+<span style="font-size: 15px; line-height: 1.6; color: #0F3D56">Thank you, Aanya. I've saved this case as Healing — you can reopen it any time.</span>
+</sc-if>
+<sc-if value="{{saidNo}}" hint-placeholder-val="{{ false }}">
+<span style="font-size: 15px; line-height: 1.6; color: #0F3D56">Of course — take your time. What else is on your mind?</span>
+</sc-if>
+</div>
+</li>
+</sc-if>
+
+<sc-if value="{{isRed}}" hint-placeholder-val="{{ false }}">
+<li style="display: flex; gap: 12px; align-items: flex-start; justify-content: flex-end">
+<div style="padding: 14px 18px; border-radius: 14px 4px 14px 14px; background: #D5E5EE; font-size: 15px; line-height: 1.6; max-width: 78%">Update: it's spreading up my arm quickly, it feels hot, and I've had a fever since last night.</div>
+<span style="width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; background: #84B3CE; display: flex; align-items: center; justify-content: center; font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 13px" aria-hidden="true">AR</span>
+</li>
+<li style="display: flex; gap: 12px; align-items: flex-start">
+<dc-import name="Dermi" size="38" mood="concerned" hint-size="38px,38px"></dc-import>
+<div role="alert" style="display: flex; flex-direction: column; gap: 14px; padding: 22px; border-radius: 4px 14px 14px 14px; background: #F3DDD2; border: 1px solid #E3B9A7; max-width: 640px">
+<span style="font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #8C3A24">Please read · this needs a doctor</span>
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 30px; line-height: 1.12; letter-spacing: -0.01em; color: #6E2B19">I'd like a dermatologist to see this soon.</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: #4A2318">A rash that spreads quickly, feels hot and comes with a fever can be a sign of a skin infection that needs proper treatment. There's no need to panic — but please don't wait on this one. Try to see a dermatologist or doctor <span style="font-weight: 500">within the next 24 hours</span>.</p>
+<p style="margin: 0; padding-top: 12px; border-top: 1px solid #E3B9A7; font-size: 14px; line-height: 1.6; color: #4A2318">If you feel very unwell, the redness spreads fast over the next few hours, or you have trouble breathing, go to the nearest emergency department.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a href="#" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; border-radius: 8px; background: #A8492F; color: #FFF8EE; text-decoration: none; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase">Find a dermatologist nearby →</a>
+<a href="CaseDetail.dc.html" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; border-radius: 8px; border: 1px solid #8C3A24; color: #8C3A24; text-decoration: none; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase">Download case report ↓</a>
+</div>
+<span style="font-size: 13px; color: #6E2B19">I'm still here if you have questions while you arrange this.</span>
+</div>
+</li>
+</sc-if>
+
+</ol>
+
+<form style="margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 16px clamp(16px, 2.5vw, 24px) 18px; border-top: 1px solid #D8D2C0">
+<button type="button" onClick="{{openCamera}}" style="min-height: 46px; padding: 0 14px; flex-shrink: 0; border: 1px solid #16587B; border-radius: 8px; background: transparent; color: #16587B; font: 500 12px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer">+ Photo</button>
+<label for="composer" class="sr-only">Message Dermi</label>
+<input id="composer" type="text" placeholder="Tell Dermi more…" style="flex: 1; min-width: 0; min-height: 46px; padding: 0 4px; border: 0; border-bottom: 1.5px solid #16587B; background: transparent; font: 300 16px 'Poppins', sans-serif; color: #0F3D56">
+<button type="button" style="min-height: 46px; padding: 0 18px; flex-shrink: 0; border: 0; border-radius: 8px; background: #16587B; color: #F5EEDD; font: 500 12px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase">Send →</button>
+</form>
+</section>
+
+<aside style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+
+<section aria-label="You" style="display: flex; flex-direction: column; gap: 16px; padding: 20px; border-radius: 10px; background: #FBF7EC; border: 1px solid #D8D2C0">
+<div style="display: flex; align-items: center; gap: 14px">
+<span style="width: 58px; height: 58px; border-radius: 50%; background: #84B3CE; display: flex; align-items: center; justify-content: center; font-family: 'Fustat', sans-serif; font-weight: 600; font-size: 18px" role="img" aria-label="Aanya's profile picture">AR</span>
+<div style="display: flex; flex-direction: column; gap: 3px">
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 24px; color: #16587B">Aanya Rao</span>
+<span style="font-size: 13px; color: #4D6878">Combination · Type IV · Fragrance allergy</span>
+</div>
+</div>
+<div style="display: flex; gap: 8px">
+<button type="button" onClick="{{openCamera}}" style="flex: 1; min-height: 48px; border: 0; border-radius: 8px; background: #16587B; color: #F5EEDD; font: 500 13px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer">Capture photo</button>
+<button type="button" style="min-height: 48px; padding: 0 16px; border: 1px solid #16587B; border-radius: 8px; background: transparent; color: #16587B; font: 500 13px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase">Upload</button>
+</div>
+</section>
+
+<section aria-labelledby="gal-h" style="display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 10px; background: #FBF7EC; border: 1px solid #D8D2C0">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><h2 id="gal-h" style="margin: 0; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #16587B">Uploaded images</h2><span style="font-size: 13px; color: #4D6878">{{photoCount}} photos</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{photos}}" as="ph" hint-placeholder-count="3">
+<button type="button" aria-label="Enlarge {{ph.label}}, {{ph.time}}" onClick="{{ph.open}}" style="display: flex; flex-direction: column; gap: 6px; padding: 0; border: 0; background: transparent; text-align: left; cursor: zoom-in; font-family: inherit; color: #0F3D56">
+<span style="position: relative; width: 100%; aspect-ratio: 4 / 3; border-radius: 5px; background: repeating-linear-gradient({{ph.angle}}, #D9CFB6 0 1px, #EFE6D1 1px 7px)">
+<sc-if value="{{ph.busy}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; top: 6px; left: 6px; padding: 3px 6px; border-radius: 3px; background: #16587B; color: #F5EEDD; font: 500 9px 'Fustat', sans-serif; letter-spacing: 0.1em">ANALYZING</span></sc-if>
+</span>
+<span style="display: flex; justify-content: space-between; gap: 6px; font-size: 12px"><span style="font-weight: 400">{{ph.label}}</span><span style="color: #4D6878">{{ph.time}}</span></span>
+</button>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="sum-h" aria-live="polite" style="display: flex; flex-direction: column; gap: 16px; padding: 20px; border-radius: 10px; background: #FBF7EC; border: {{sumBorder}}">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding-bottom: 12px; border-bottom: 1px solid #16587B">
+<h2 id="sum-h" style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 26px; color: #16587B">Live case summary</h2>
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #16587B; animation: dmPulse 2.4s ease-in-out infinite">{{updated}}</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">Possible conditions</span>
+<sc-for list="{{conditions}}" as="c" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; gap: 8px; font-size: 14px; color: {{c.fg}}"><span style="font-weight: 400">{{c.name}}</span><span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 400; font-size: 16px">{{c.conf}}</span></div>
+<div style="height: 5px; border-radius: 2px; background: #E6E0CE; overflow: hidden"><div style="width: {{c.w}}; height: 100%; background: {{c.bar}}"></div></div>
+</div>
+</sc-for>
+<span style="font-size: 12px; color: #4D6878">Likelihoods, not a diagnosis.</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">Key symptoms</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{symptoms}}" as="s" hint-placeholder-count="6">
+<span style="padding: 4px 9px; border-radius: 4px; background: {{s.bg}}; color: {{s.fg}}; font-size: 13px; font-weight: 400">{{s.label}}</span>
+</sc-for>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #D8D2C0">
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 12px 0 0; border-right: 1px solid #D8D2C0">
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">Discomfort</span>
+<span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 38px; line-height: 1; color: #16587B">{{pain}}<span style="font-size: 18px; color: #4D6878">/10</span></span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 0 0 14px">
+<span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">Status</span>
+<span style="align-self: flex-start; {{statusChip}}">{{statusLabel}}</span>
+</div>
+</div>
+<p style="margin: 0; padding-top: 12px; border-top: 1px solid #D8D2C0; font-size: 13px; line-height: 1.55"><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #16587B">Suspected trigger · </span>new body lotion, started Sunday</p>
+</section>
+
+</aside>
+</div>
+</main>
+
+<sc-if value="{{showCamera}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; z-index: 10; background: rgba(15,61,86,0.45); display: flex; justify-content: center; align-items: flex-start; padding: 72px 16px">
+<section role="dialog" aria-modal="true" aria-labelledby="cam-h" style="width: min(760px, 100%); display: flex; flex-direction: column; gap: 18px; padding: 24px; border-radius: 10px; background: #FBF7EC">
+<div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 1px solid #16587B">
+<h2 id="cam-h" style="margin: 0; font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 30px; color: #16587B">Capture photo</h2>
+<button type="button" aria-label="Close camera" onClick="{{closeCamera}}" style="width: 44px; height: 44px; border: 0; background: transparent; color: #16587B; font: 300 28px 'Poppins', sans-serif; cursor: pointer">×</button>
+</div>
+<div style="position: relative; width: 100%; aspect-ratio: 16 / 10; border-radius: 6px; overflow: hidden; background: #0F3D56">
+<div style="position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, rgba(132,179,206,0.16) 0 1px, transparent 1px 9px)"></div>
+<div style="position: absolute; top: 20%; left: 24%; width: 40px; height: 40px; border-top: 2px solid #F5EEDD; border-left: 2px solid #F5EEDD; border-top-left-radius: 6px"></div>
+<div style="position: absolute; top: 20%; right: 24%; width: 40px; height: 40px; border-top: 2px solid #F5EEDD; border-right: 2px solid #F5EEDD; border-top-right-radius: 6px"></div>
+<div style="position: absolute; bottom: 20%; left: 24%; width: 40px; height: 40px; border-bottom: 2px solid #F5EEDD; border-left: 2px solid #F5EEDD; border-bottom-left-radius: 6px"></div>
+<div style="position: absolute; bottom: 20%; right: 24%; width: 40px; height: 40px; border-bottom: 2px solid #F5EEDD; border-right: 2px solid #F5EEDD; border-bottom-right-radius: 6px"></div>
+<span style="position: absolute; top: 16px; left: 16px; right: 16px; text-align: center; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #F5EEDD">Fit the patch and a little healthy skin inside the corners</span>
+<span style="position: absolute; bottom: 14px; left: 16px; padding: 4px 8px; border-radius: 3px; background: #F5EEDD; color: #16587B; font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase">Light is good</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid #D8D2C0; border-bottom: 1px solid #D8D2C0">
+<span style="padding: 12px 12px 12px 0; font-size: 14px; border-right: 1px solid #D8D2C0"><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; color: #16587B">01 </span>Natural light, no flash</span>
+<span style="padding: 12px; font-size: 14px; border-right: 1px solid #D8D2C0"><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; color: #16587B">02 </span>About 15 cm away</span>
+<span style="padding: 12px; font-size: 14px"><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; color: #16587B">03 </span>Hold still for a second</span>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+<button type="button" onClick="{{closeCamera}}" style="min-height: 48px; padding: 0 20px; border: 1px solid #16587B; border-radius: 8px; background: transparent; color: #16587B; font: 500 13px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer">Cancel</button>
+<button type="button" aria-label="Take photo" onClick="{{shutter}}" style="width: 76px; height: 76px; border-radius: 50%; border: 2px solid #16587B; background: #FBF7EC; padding: 6px; cursor: pointer"><span style="display: block; width: 100%; height: 100%; border-radius: 50%; background: #16587B"></span></button>
+<button type="button" style="min-height: 48px; padding: 0 20px; border: 1px solid #16587B; border-radius: 8px; background: transparent; color: #16587B; font: 500 13px 'Fustat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase">Flip</button>
+</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{showLightbox}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; z-index: 11; background: rgba(15,61,86,0.55); display: flex; justify-content: center; align-items: flex-start; padding: 72px 16px">
+<section role="dialog" aria-modal="true" aria-label="{{lightLabel}}" style="width: min(820px, 100%); display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 10px; background: #FBF7EC">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Ortica', 'Newsreader', Georgia, serif; font-weight: 300; font-size: 26px; color: #16587B">{{lightLabel}}</span><span style="font-family: 'Fustat', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #4D6878">{{lightTime}}</span></span>
+<button type="button" aria-label="Close" onClick="{{closeLight}}" style="width: 44px; height: 44px; border: 0; background: transparent; color: #16587B; font: 300 28px 'Poppins', sans-serif; cursor: pointer">×</button>
+</div>
+<div style="width: 100%; aspect-ratio: 4 / 3; border-radius: 6px; background: repeating-linear-gradient(-45deg, #D9CFB6 0 1px, #EFE6D1 1px 9px)"></div>
+</section>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"variant":{"editor":"enum","default":"default","options":["default","camera","analyzing","closing","redflag"]},"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: null, pain: 6, enlarged: null, satisfied: null, extra: false };
+  }
+  componentWillUnmount() { clearTimeout(this.timer); }
+  renderVals() {
+    const mode = this.state.mode ?? this.props.variant ?? 'default';
+    const set = (o) => this.setState(o);
+    const pain = this.state.pain;
+    const bands = (n) => n <= 3 ? 'Mild — noticeable but easy to ignore' : n <= 6 ? 'Moderate — noticeably uncomfortable' : n <= 8 ? 'Severe — hard to focus on other things' : 'Very severe — it feels overwhelming';
+    const scale = Array.from({ length: 10 }, (_, i) => {
+      const n = i + 1; const c = 3 - i * 0.67; const on = pain === n;
+      return {
+        n, pressed: String(on), aria: n + ' out of 10',
+        mouth: 'M8.2 15.6 Q12 ' + (15.5 + c).toFixed(1) + ' 15.9 15.3',
+        pick: () => set({ pain: n }),
+        style: 'display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 72px; padding: 8px 0; border-radius: 6px; cursor: pointer; ' + (on ? 'border: 1.5px solid #16587B; background: #16587B; color: #F5EEDD;' : 'border: 1px solid #D8D2C0; background: #FBF7EC; color: #16587B;')
+      };
+    });
+    const isRed = mode === 'redflag';
+    const isAnalyzing = mode === 'analyzing';
+    const isClosing = mode === 'closing';
+    const angles = ['-45deg', '45deg', '-30deg', '60deg'];
+    const photoList = [
+      { label: 'Left forearm', time: '9:14 AM' },
+      { label: 'Close-up', time: '9:16 AM' },
+      { label: 'Inner wrist', time: '9:17 AM' }
+    ];
+    if (isAnalyzing || this.state.extra) photoList.push({ label: 'Close-up 2', time: 'Just now', busy: isAnalyzing });
+    const photos = photoList.map((p, i) => ({ ...p, busy: !!p.busy, angle: angles[i % 4], open: () => set({ enlarged: i }) }));
+    const lp = this.state.enlarged != null ? photos[this.state.enlarged] : null;
+    const chip = 'padding: 5px 9px; border-radius: 4px; font: 500 11px Fustat, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; ';
+    const status = isRed ? ['See a dermatologist', chip + 'background: #F3DDD2; color: #8C3A24;'] : isAnalyzing ? ['Updating', chip + 'background: #D5E5EE; color: #0F3D56;'] : (isClosing && this.state.satisfied === 'yes') ? ['Healing', chip + 'background: #16587B; color: #F5EEDD;'] : ['Open', chip + 'background: #D5E5EE; color: #0F3D56;'];
+    const conds = isRed
+      ? [{ name: 'Possible skin infection', conf: 'review', w: '100%', bar: '#A8492F', fg: '#8C3A24' }, { name: 'Allergic contact dermatitis', conf: '54%', w: '54%', bar: '#16587B', fg: '#0F3D56' }, { name: 'Irritant contact dermatitis', conf: '12%', w: '12%', bar: '#84B3CE', fg: '#0F3D56' }]
+      : [{ name: 'Allergic contact dermatitis', conf: '72%', w: '72%', bar: '#16587B', fg: '#0F3D56' }, { name: 'Irritant contact dermatitis', conf: '19%', w: '19%', bar: '#84B3CE', fg: '#0F3D56' }, { name: 'Eczema flare', conf: '9%', w: '9%', bar: '#84B3CE', fg: '#0F3D56' }];
+    const base = ['Itchy', 'Red patch', 'Small bumps', 'Worse at night', '4 days'].map((l) => ({ label: l, bg: '#D5E5EE', fg: '#0F3D56' }));
+    const symptoms = isRed ? [...['Spreading fast', 'Warm to touch', 'Fever'].map((l) => ({ label: l, bg: '#F3DDD2', fg: '#8C3A24' })), ...base] : base;
+    return {
+      scale, painText: pain + ' — ' + bands(pain), pain,
+      isRed, isAnalyzing, isClosing, showCamera: mode === 'camera',
+      askSatisfied: this.state.satisfied == null, saidYes: this.state.satisfied === 'yes', saidNo: this.state.satisfied === 'no',
+      sayYes: () => set({ satisfied: 'yes' }), sayNo: () => set({ satisfied: 'no' }),
+      photos, photoCount: photos.length,
+      showLightbox: !!lp, lightLabel: lp ? lp.label : '', lightTime: lp ? lp.time : '',
+      closeLight: () => set({ enlarged: null }),
+      statusLabel: status[0], statusChip: status[1],
+      sumBorder: isRed ? '1.5px solid #E3B9A7' : '1px solid #D8D2C0',
+      conditions: conds, symptoms,
+      updated: isAnalyzing ? 'Updating…' : 'Live',
+      openCamera: () => set({ mode: 'camera' }),
+      closeCamera: () => set({ mode: 'default' }),
+      shutter: () => { set({ mode: 'analyzing' }); clearTimeout(this.timer); this.timer = setTimeout(() => this.setState({ mode: 'default', extra: true }), 3200); }
+    };
+  }
+}
+</script>
+</body>
+</html>

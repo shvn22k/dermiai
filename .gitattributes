@@ -1,0 +1,4 @@
+# Normalise line endings (team is mixed Windows / macOS / Linux).
+* text=auto eol=lf
+*.{png,jpg,jpeg,gif,webp,ico} binary
+*.ipynb text eol=lf

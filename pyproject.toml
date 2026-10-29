@@ -1,0 +1,79 @@
+# Root of the uv workspace. This project is virtual (never built/installed);
+# it only holds workspace membership and shared tool config (ruff, mypy, pytest).
+# Each member has its own pyproject.toml and dependency set. The web app is a separate npm
+# workspace (root package.json) and shares contracts through packages/schemas.
+
+[project]
+name = "dermiai"
+version = "0.0.0"
+description = "DermiAI monorepo (workspace root, not a distributable package)"
+requires-python = ">=3.11,<3.12"
+dependencies = []
+
+[dependency-groups]
+# Installed by `uv sync --all-packages` (full-stack dev). Area-only syncs use each member's own dev group.
+dev = ["ruff>=0.11", "mypy>=1.15", "pytest>=8.3"]
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["packages/schemas", "ml/vision", "ml/llm"]
+
+[tool.uv.sources]
+dermiai-schemas = { workspace = true }
+
+# --------------------------------------------------------------------------- ruff
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = ["**/notebooks/**"]
+
+[tool.ruff.lint]
+select = [
+  "E", "W",   # pycodestyle
+  "F",        # pyflakes
+  "I",        # isort
+  "B",        # bugbear
+  "UP",       # pyupgrade
+  "SIM",      # simplify
+  "N",        # naming
+  "RUF",      # ruff-specific
+  "S",        # bandit-lite (security)
+  "PTH",      # prefer pathlib
+]
+ignore = ["E501"]  # line length is the formatter's job
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["S101"]  # assert is fine in tests
+
+[tool.ruff.lint.isort]
+known-first-party = ["dermiai_schemas", "dermiai_vision", "dermiai_llm"]
+
+# --------------------------------------------------------------------------- mypy
+[tool.mypy]
+python_version = "3.11"
+strict = true
+plugins = ["pydantic.mypy"]
+# Lets mypy resolve cross-package imports even in pre-commit's isolated env.
+mypy_path = "packages/schemas/src,ml/vision/src,ml/llm/src"
+explicit_package_bases = true
+warn_unused_configs = false  # overrides below are for heavy deps not imported yet
+
+[[tool.mypy.overrides]]
+# Heavy / untyped ML deps: don't require stubs (and don't require them installed in pre-commit).
+module = [
+  "torch.*", "torchvision.*", "timm.*", "transformers.*", "peft.*", "trl.*",
+  "datasets.*", "accelerate.*", "bitsandbytes.*", "wandb.*", "fitz.*", "pymupdf.*",
+]
+ignore_missing_imports = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+
+# --------------------------------------------------------------------------- pytest
+[tool.pytest.ini_options]
+# importlib mode: test files with the same name (e.g. test_config.py) can exist in several areas.
+addopts = "-ra --import-mode=importlib"
+testpaths = ["packages/schemas/tests", "ml/vision/tests", "ml/llm/tests"]

@@ -1,0 +1,43 @@
+[project]
+name = "dermiai-llm"
+version = "0.1.0"
+description = "DermiAI LLM pipeline: data, persona, CPT -> SFT -> DPO training, eval, serving"
+requires-python = ">=3.11,<3.12"
+# Base deps are light (config loading + CLIs). Heavy deps live in one extra per pipeline step.
+dependencies = [
+  "dermiai-schemas",
+  "pydantic>=2.9,<3",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# uv sync --package dermiai-llm --extra data
+data = ["pymupdf>=1.24", "ftfy>=6.3", "datasets>=3.0"]
+# uv sync --package dermiai-llm --extra train   (GPU machine)
+train = [
+  "torch>=2.5",
+  "transformers>=4.46",
+  "peft>=0.13",
+  "trl>=0.12",
+  "datasets>=3.0",
+  "accelerate>=1.0",
+  "bitsandbytes>=0.44; sys_platform == 'linux'",
+  "wandb>=0.18",
+]
+# uv sync --package dermiai-llm --extra eval
+eval = ["datasets>=3.0", "wandb>=0.18", "httpx>=0.27"]
+# uv sync --package dermiai-llm --extra serve   (vLLM is added on the GPU image, see infra/docker)
+serve = ["fastapi>=0.115", "uvicorn[standard]>=0.32"]
+
+[dependency-groups]
+dev = ["pytest>=8.3", "mypy>=1.15", "ruff>=0.11", "types-PyYAML"]
+
+[tool.uv.sources]
+dermiai-schemas = { workspace = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dermiai_llm"]

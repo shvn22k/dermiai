@@ -1,0 +1,29 @@
+name: Feature request
+description: New capability or improvement
+title: "feat(<area>): "
+labels: [enhancement]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: [ml/llm, ml/vision, apps/web, apps/web (supabase/db), packages/schemas, infra/CI]
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / user need
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+  - type: checkboxes
+    id: contract
+    attributes:
+      label: Impact
+      options:
+        - label: Changes a shared contract in packages/schemas
+        - label: Needs an ADR (architectural decision)
