@@ -12,7 +12,16 @@ export function CaseCard({ c }: { c: CaseSummary }) {
       href={`/cases/${c.id}`}
       className="grid grid-cols-[56px_1fr_auto] items-center gap-3 rounded-btn border border-line bg-paper p-2 text-ink no-underline hover:border-venice hover:text-ink sm:grid-cols-[104px_1fr] sm:items-stretch sm:gap-[18px] sm:rounded-card sm:p-3.5"
     >
-      <Hatch angle={c.angle} className="h-14 rounded-[5px] sm:h-28 sm:rounded-[6px]" />
+      {c.thumb ? (
+        // eslint-disable-next-line @next/next/no-img-element -- data URL from browser storage
+        <img
+          src={c.thumb}
+          alt=""
+          className="h-14 w-full rounded-[5px] object-cover sm:h-28 sm:rounded-[6px]"
+        />
+      ) : (
+        <Hatch angle={c.angle} className="h-14 rounded-[5px] sm:h-28 sm:rounded-[6px]" />
+      )}
       <span className="flex min-w-0 flex-col gap-0.5 sm:gap-1.5">
         <span className="caps hidden text-[11px] text-muted sm:block">
           {c.area} · {c.photos} {c.photos === 1 ? "photo" : "photos"}

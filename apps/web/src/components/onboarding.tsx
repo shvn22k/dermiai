@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { Dermi } from "@/components/dermi";
@@ -10,11 +10,12 @@ import {
   Button,
   cx,
   fieldLabelClass,
-  LinkButton,
   OptionCard,
   ToggleChip,
   underlineInputClass,
 } from "@/components/ui";
+import { demo } from "@/demo/store";
+import type { DemoProfile } from "@/demo/types";
 
 const STEP_LABELS = ["Skin type", "Skin tone", "Allergies", "Products & medications", "Concerns"];
 
@@ -77,21 +78,49 @@ function toggleIn(list: string[], v: string) {
 const h1 =
   "display m-0 text-[36px] leading-[1.05] tracking-[-0.03em] text-venice sm:text-[52px]";
 
-/** Five-step skin profile (design/screens/Onboarding.dc.html). Saves to Supabase `profiles` later. */
-export function OnboardingView({ initialStep = 1 }: { initialStep?: number }) {
+/** Five-step skin profile (design/screens/Onboarding.dc.html). Demo: saves to browser storage. */
+export function OnboardingView({
+  initialStep = 1,
+  initial,
+}: {
+  initialStep?: number;
+  initial: DemoProfile | null;
+}) {
+  const router = useRouter();
   const [step, setStep] = useState(initialStep);
-  const [skinType, setSkinType] = useState("combination");
-  const [tone, setTone] = useState(4);
-  const [allergies, setAllergies] = useState(["Fragrance"]);
-  const [otherAllergy, setOtherAllergy] = useState("");
-  const [concerns, setConcerns] = useState(["Rashes & itching", "Sensitivity"]);
+  const [name, setName] = useState(initial?.name ?? "");
+  const [skinType, setSkinType] = useState(
+    SKIN_TYPES.find(([, label]) => label === initial?.skinType)?.[0] ?? "",
+  );
+  const [tone, setTone] = useState(initial?.tone ?? 0);
+  const [allergies, setAllergies] = useState<string[]>(
+    initial?.allergies.filter((a) => ALLERGIES.includes(a)) ?? [],
+  );
+  const [otherAllergy, setOtherAllergy] = useState(
+    initial?.allergies.filter((a) => !ALLERGIES.includes(a)).join(", ") ?? "",
+  );
+  const [concerns, setConcerns] = useState<string[]>(initial?.concerns ?? []);
   const [draft, setDraft] = useState("");
-  const [products, setProducts] = useState<Product[]>([
-    { kind: "Product", name: "Gentle foaming cleanser", when: "AM · PM" },
-    { kind: "Product", name: "Niacinamide 10% serum", when: "AM" },
-    { kind: "Product", name: "SPF 50 sunscreen", when: "AM" },
-    { kind: "Medication", name: "Cetirizine 10 mg", when: "As needed" },
-  ]);
+  const [products, setProducts] = useState<Product[]>(initial?.products ?? []);
+
+  const save = () => {
+    const extra = otherAllergy
+      .split(",")
+      .map((a) => a.trim())
+      .filter(Boolean);
+    demo.setProfile({
+      name: name.trim() || "Friend",
+      skinType: SKIN_TYPES.find(([id]) => id === skinType)?.[1] ?? "Not sure",
+      tone,
+      allergies: [...allergies.filter((a) => a !== "None I know of"), ...extra],
+      products,
+      concerns,
+    });
+  };
+  const finish = () => {
+    save();
+    router.push("/dashboard");
+  };
 
   const next = () => setStep((s) => Math.min(5, s + 1));
   const back = () => setStep((s) => Math.max(1, s - 1));
@@ -110,9 +139,13 @@ export function OnboardingView({ initialStep = 1 }: { initialStep?: number }) {
           <span className="caps order-last w-full text-[13px] text-venice sm:order-none sm:w-auto">
             Your skin profile · step {step} of 5
           </span>
-          <Link href="/dashboard" className="caps py-3 text-[13px] no-underline">
+          <button
+            type="button"
+            onClick={finish}
+            className="caps cursor-pointer py-3 text-[13px] text-venice hover:text-ink"
+          >
             Save &amp; finish later
-          </Link>
+          </button>
         </div>
       </header>
 
@@ -158,6 +191,18 @@ export function OnboardingView({ initialStep = 1 }: { initialStep?: number }) {
         <section aria-labelledby="ob-title" className="flex min-w-0 flex-[999_1_560px] flex-col gap-7">
           {step === 1 && (
             <div className="flex flex-col gap-6">
+              <label htmlFor="ob-name" className={cx(fieldLabelClass, "max-w-[420px]")}>
+                What should Dermi call you?
+                <input
+                  id="ob-name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your name"
+                  autoComplete="name"
+                  className={underlineInputClass}
+                />
+              </label>
               <h1 id="ob-title" className={h1}>
                 What&apos;s your skin type?
               </h1>
@@ -280,9 +325,6 @@ export function OnboardingView({ initialStep = 1 }: { initialStep?: number }) {
                 <Button type="submit" variant="secondary" className="min-h-[46px]">
                   Add
                 </Button>
-                <Button variant="secondary" className="min-h-[46px]">
-                  Snap a label
-                </Button>
               </form>
             </div>
           )}
@@ -313,17 +355,27 @@ export function OnboardingView({ initialStep = 1 }: { initialStep?: number }) {
               <Arrow>←</Arrow> Back
             </Button>
             <div className="flex items-center gap-2">
-              <Button variant="ghost" onClick={next} className="text-muted" hidden={step === 5}>
+              <Button
+                variant="ghost"
+                onClick={next}
+                className="text-muted"
+                hidden={step === 5}
+                disabled={step === 1 && !name.trim()}
+              >
                 Skip
               </Button>
               {step < 5 ? (
-                <Button onClick={next} className="min-h-[52px] px-[26px]">
+                <Button
+                  onClick={next}
+                  disabled={step === 1 && !name.trim()}
+                  className="min-h-[52px] px-[26px]"
+                >
                   Continue <Arrow />
                 </Button>
               ) : (
-                <LinkButton href="/dashboard" className="min-h-[52px] px-[26px]">
+                <Button onClick={finish} className="min-h-[52px] px-[26px]">
                   Finish &amp; meet Dermi <Arrow />
-                </LinkButton>
+                </Button>
               )}
             </div>
           </div>

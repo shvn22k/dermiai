@@ -1,14 +1,25 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 import { OnboardingView } from "@/components/onboarding";
+import { DemoGate } from "@/demo/gate";
 
-export const metadata: Metadata = { title: "Your skin profile" };
-
-type Props = { searchParams: Promise<{ step?: string }> };
+function Onboarding() {
+  const step = Math.min(5, Math.max(1, Number(useSearchParams().get("step")) || 1));
+  return (
+    <DemoGate>
+      {(s) => <OnboardingView key={step} initialStep={step} initial={s.profile} />}
+    </DemoGate>
+  );
+}
 
 /** `?step=1..5` opens a specific step. */
-export default async function OnboardingPage({ searchParams }: Props) {
-  const { step } = await searchParams;
-  const n = Math.min(5, Math.max(1, Number(step) || 1));
-  return <OnboardingView key={n} initialStep={n} />;
+export default function OnboardingPage() {
+  return (
+    <Suspense>
+      <Onboarding />
+    </Suspense>
+  );
 }

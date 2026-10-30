@@ -34,6 +34,8 @@ export type CaseSummary = {
   updated: string;
   /** Hatch angle for the placeholder thumbnail. */
   angle: number;
+  /** Real photo (data URL) when there is one. */
+  thumb?: string;
 };
 
 export const cases: CaseSummary[] = [

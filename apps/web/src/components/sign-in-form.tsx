@@ -1,23 +1,40 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { Arrow, Button, fieldLabelClass, underlineInputClass } from "@/components/ui";
+import { demo, getState } from "@/demo/store";
 
-/** Magic-link form. Wire to supabase.auth.signInWithOtp (redirect: /auth/callback) when auth lands. */
+/** Demo: no accounts. Signing in continues this browser's demo, or loads the sample patient. */
 export function SignInForm() {
+  const router = useRouter();
   const [submitted, setSubmitted] = useState(false);
 
   if (submitted) {
     return (
       <div role="status" className="flex flex-col gap-3 border-t border-line pt-4">
         <p className="m-0 text-[15px] leading-relaxed">
-          Sign-in isn&apos;t connected yet, so no email was sent.
+          This is a demo, so there are no accounts and no email was sent. Pick how you&apos;d like to look
+          around:
         </p>
-        <Link href="/dashboard" className="caps inline-flex min-h-11 items-center gap-2 text-[13px] no-underline">
-          Continue to the demo <Arrow />
-        </Link>
+        <Button
+          onClick={() => {
+            if (!getState().profile) demo.reset("sample");
+            router.push("/dashboard");
+          }}
+        >
+          Continue <Arrow />
+        </Button>
+        <Button
+          variant="secondary"
+          onClick={() => {
+            demo.reset("sample");
+            router.push("/dashboard");
+          }}
+        >
+          Load the sample patient (Aanya)
+        </Button>
       </div>
     );
   }
@@ -47,9 +64,9 @@ export function SignInForm() {
       </Button>
       <p className="m-0 text-[13px] text-muted">
         New here?{" "}
-        <Link href="/onboarding" className="font-normal">
+        <a href="/onboarding" className="font-normal">
           Set up your skin profile
-        </Link>
+        </a>
       </p>
     </form>
   );

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 
 import { Arrow, cx, HandTick } from "@/components/ui";
 import { type Reminder, splitTime } from "@/lib/demo";
@@ -9,18 +8,15 @@ import { type Reminder, splitTime } from "@/lib/demo";
 /** Today's reminders with hand-drawn tick boxes (design/screens/Dashboard.dc.html). */
 export function TodayReminders({
   items,
-  initialDone = [],
+  doneIds,
+  onToggle,
 }: {
   items: Reminder[];
-  initialDone?: string[];
+  doneIds: string[];
+  onToggle: (id: string) => void;
 }) {
-  const [done, setDone] = useState<Set<string>>(() => new Set(initialDone));
-  const toggle = (id: string) =>
-    setDone((prev) => {
-      const next = new Set(prev);
-      if (!next.delete(id)) next.add(id);
-      return next;
-    });
+  const done = new Set(doneIds);
+  const toggle = onToggle;
 
   return (
     <section aria-labelledby="today-h" className="flex flex-col gap-1">

@@ -11,7 +11,9 @@ import {
   ToggleChip,
   underlineInputClass,
 } from "@/components/ui";
-import { cases, type Reminder, splitTime } from "@/lib/demo";
+import { demo, makeEvent } from "@/demo/store";
+import type { DemoCase, DemoReminder } from "@/demo/types";
+import { splitTime } from "@/lib/demo";
 
 const GROUPS = [
   { name: "Morning", test: (h: number) => h < 12 },
@@ -26,6 +28,48 @@ const PRESETS: Record<string, number[]> = {
   Weekdays: [0, 1, 2, 3, 4],
   Weekends: [5, 6],
 };
+function todayIndex() {
+  return (new Date().getDay() + 6) % 7;
+}
+
+/** Demo of the reminder channel: a real browser notification a few seconds from now. */
+function TestNudge() {
+  const [state, setState] = useState<"idle" | "waiting" | "sent" | "inpage">("idle");
+  const fire = async () => {
+    let allowed = false;
+    if ("Notification" in window) {
+      allowed =
+        Notification.permission === "granted" ||
+        (await Notification.requestPermission()) === "granted";
+    }
+    setState("waiting");
+    setTimeout(() => {
+      if (allowed) {
+        new Notification("Dermi", { body: "Time to moisturise. Your skin will thank you." });
+        setState("sent");
+      } else {
+        setState("inpage");
+      }
+    }, 4000);
+  };
+  return (
+    <div className="flex flex-col gap-1.5 border-t border-line pt-4">
+      <Button variant="secondary" size="sm" onClick={fire} disabled={state === "waiting"}>
+        {state === "waiting" ? "Nudge coming in 4 seconds…" : "Send me a test nudge"}
+      </Button>
+      {state === "sent" && (
+        <span className="text-[13px] text-muted">Sent as a browser notification.</span>
+      )}
+      {state === "inpage" && (
+        <span role="status" className="rounded-tag bg-rock-tint px-3 py-2 text-sm">
+          Dermi: Time to moisturise. Your skin will thank you. (Notifications are blocked, so here
+          it is in the page.)
+        </span>
+      )}
+    </div>
+  );
+}
+
 const DAYS = [
   ["M", "Monday"],
   ["T", "Tuesday"],
@@ -36,36 +80,52 @@ const DAYS = [
   ["S", "Sunday"],
 ] as const;
 
-/** Reminder list + create form (design/screens/Reminders.dc.html). Persists via /api/reminders later. */
-export function RemindersView({ initial }: { initial: Reminder[] }) {
-  const [items, setItems] = useState(initial);
+/** Reminder list + create form (design/screens/Reminders.dc.html). Demo: browser storage. */
+export function RemindersView({ items, cases }: { items: DemoReminder[]; cases: DemoCase[] }) {
+  const openCases = cases.filter((c) => c.status !== "resolved");
   const [type, setType] = useState("Medication");
   const [name, setName] = useState("Apply prescribed cream");
   const [time, setTime] = useState("18:00");
-  const [caseId, setCaseId] = useState(cases[0]?.id ?? "");
+  const [caseId, setCaseId] = useState(openCases[0]?.id ?? "");
+  const [saved, setSaved] = useState<string | null>(null);
   const [repeat, setRepeat] = useState<(typeof REPEATS)[number]>("Every day");
   const [days, setDays] = useState<number[]>(PRESETS["Every day"]!);
   const [nudge, setNudge] = useState(true);
 
-  const setEnabled = (id: string, enabled: boolean) =>
-    setItems((list) => list.map((r) => (r.id === id ? { ...r, enabled } : r)));
+  const setEnabled = (id: string, enabled: boolean) => demo.setReminderEnabled(id, enabled);
 
   const save = (e: FormEvent) => {
     e.preventDefault();
+    if (days.length === 0) return;
     const linked = cases.find((c) => c.id === caseId);
     const label =
       repeat === "Custom" ? days.map((d) => DAYS[d]![1].slice(0, 3)).join(", ") : repeat;
-    setItems((list) => [
-      ...list,
-      {
-        id: crypto.randomUUID(),
-        title: name.trim() || "New reminder",
-        time,
-        repeat: label,
-        caseLabel: linked?.name.split(" ").at(-1),
-        enabled: true,
-      },
-    ]);
+    const title = name.trim() || "New reminder";
+    demo.addReminder({
+      title,
+      time,
+      days,
+      repeat: label,
+      caseId: linked?.id,
+      caseLabel: linked?.title.split(",")[0],
+      enabled: true,
+    });
+    if (linked) {
+      demo.updateCase(linked.id, (c) => ({
+        ...c,
+        events: [
+          makeEvent({
+            kind: "Reminder",
+            title: `${title}, ${time} ${label.toLowerCase()}`,
+            detail: "You added this reminder.",
+            photoIds: [],
+            pain: null,
+          }),
+          ...c.events,
+        ],
+      }));
+    }
+    setSaved(title);
   };
 
   return (
@@ -86,7 +146,7 @@ export function RemindersView({ initial }: { initial: Reminder[] }) {
                     <li
                       key={r.id}
                       className={cx(
-                        "grid min-h-[72px] grid-cols-[76px_1fr_52px] items-center gap-3.5 border-b border-line py-2 sm:grid-cols-[96px_1fr_auto_52px]",
+                        "grid min-h-[72px] grid-cols-[76px_1fr_auto] items-center gap-3.5 border-b border-line py-2 sm:grid-cols-[96px_1fr_auto_auto]",
                         !r.enabled && "opacity-55",
                       )}
                     >
@@ -108,11 +168,21 @@ export function RemindersView({ initial }: { initial: Reminder[] }) {
                           </span>
                         )}
                       </span>
-                      <Switch
-                        checked={r.enabled}
-                        onChange={(v) => setEnabled(r.id, v)}
-                        label={`${r.title} reminder`}
-                      />
+                      <span className="flex items-center gap-1">
+                        <Switch
+                          checked={r.enabled}
+                          onChange={(v) => setEnabled(r.id, v)}
+                          label={`${r.title} reminder`}
+                        />
+                        <button
+                          type="button"
+                          aria-label={`Delete ${r.title}`}
+                          onClick={() => demo.deleteReminder(r.id)}
+                          className="size-9 cursor-pointer text-xl font-light text-muted hover:text-venice"
+                        >
+                          ×
+                        </button>
+                      </span>
                     </li>
                   );
                 })}
@@ -180,13 +250,11 @@ export function RemindersView({ initial }: { initial: Reminder[] }) {
               onChange={(e) => setCaseId(e.target.value)}
               className={cx(underlineInputClass, "px-0")}
             >
-              {cases
-                .filter((c) => c.status !== "resolved")
-                .map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name}
-                  </option>
-                ))}
+              {openCases.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.title}
+                </option>
+              ))}
               <option value="">None</option>
             </select>
           </label>
@@ -242,9 +310,16 @@ export function RemindersView({ initial }: { initial: Reminder[] }) {
           <Switch checked={nudge} onChange={setNudge} label="Gentle follow-up" />
         </div>
 
-        <Button type="submit" className="min-h-[52px]">
+        <Button type="submit" className="min-h-[52px]" disabled={days.length === 0}>
           Save reminder
         </Button>
+        {saved && (
+          <p role="status" className="m-0 -mt-2 text-sm text-venice">
+            Saved &ldquo;{saved}&rdquo;. It&apos;s in your list
+            {days.includes(todayIndex()) ? " and on today’s dashboard" : ""}.
+          </p>
+        )}
+        <TestNudge />
 
         <div className="flex items-end gap-3">
           <Dermi size={48} />

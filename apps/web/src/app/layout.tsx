@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Fustat, Newsreader, Poppins } from "next/font/google";
+import { DemoChrome } from "@/demo/chrome";
+
 import "./globals.css";
 
 const newsreader = Newsreader({
@@ -27,7 +29,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       lang="en"
       className={`${newsreader.variable} ${fustat.variable} ${poppins.variable}`}
     >
-      <body className="min-h-dvh">{children}</body>
+      <body className="min-h-dvh">
+        <DemoChrome />
+        {children}
+      </body>
     </html>
   );
 }

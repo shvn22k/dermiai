@@ -5,7 +5,10 @@ import { usePathname } from "next/navigation";
 
 import { Dermi } from "@/components/dermi";
 import { Arrow, Avatar, cx } from "@/components/ui";
-import { profile } from "@/lib/demo";
+import { initialsOf } from "@/demo/gate";
+import { useDemo } from "@/demo/store";
+
+const ROMAN = ["I", "II", "III", "IV", "V", "VI"];
 
 const NAV = [
   { href: "/dashboard", label: "Dashboard", short: "Home" },
@@ -37,6 +40,7 @@ export function Logo({ size = 40 }: { size?: number }) {
 /** Desktop navigation (design/screens/Sidebar.dc.html). */
 export function Sidebar() {
   const isActive = useActive();
+  const profile = useDemo()?.profile;
   return (
     <nav
       aria-label="Main"
@@ -77,11 +81,15 @@ export function Sidebar() {
           Dermi supports, not replaces, a dermatologist.
         </p>
         <Link href="/onboarding" className="flex min-h-11 items-center gap-3 text-ink no-underline">
-          <Avatar initials={profile.initials} size={40} />
+          <Avatar initials={profile ? initialsOf(profile.name) : "+"} size={40} />
           <span className="flex flex-col gap-px">
-            <span className="text-sm font-normal">{profile.name}</span>
+            <span className="text-sm font-normal">{profile?.name ?? "Set up your profile"}</span>
             <span className="text-xs text-muted">
-              {profile.skinType} · Type {profile.fitzpatrick}
+              {profile
+                ? [profile.skinType, profile.tone ? `Type ${ROMAN[profile.tone - 1]}` : null]
+                    .filter(Boolean)
+                    .join(" · ")
+                : "Takes about two minutes"}
             </span>
           </span>
         </Link>
