@@ -12,7 +12,7 @@ const NAV = [
   { href: "/cases", label: "Cases", short: "Cases", also: ["/consult"] },
   { href: "/reminders", label: "Reminders", short: "Remind" },
   { href: "/ingredients", label: "Ingredient check", short: "Check" },
-  { href: "/onboarding", label: "Profile", short: "You" },
+  { href: "/profile", label: "Profile", short: "You", also: ["/onboarding"] },
 ] as const;
 
 function useActive() {
@@ -76,15 +76,26 @@ export function Sidebar() {
         <p className="m-0 border-t border-line pt-3.5 text-[13px] leading-relaxed text-muted">
           Dermi supports, not replaces, a dermatologist.
         </p>
-        <Link href="/onboarding" className="flex min-h-11 items-center gap-3 text-ink no-underline">
-          <Avatar initials={profile.initials} size={40} />
-          <span className="flex flex-col gap-px">
-            <span className="text-sm font-normal">{profile.name}</span>
-            <span className="text-xs text-muted">
-              {profile.skinType} · Type {profile.fitzpatrick}
+        <div className="flex items-center justify-between">
+          <Link href="/profile" className="flex min-h-11 items-center gap-3 text-ink no-underline">
+            <Avatar initials={profile.initials} size={40} />
+            <span className="flex flex-col gap-px">
+              <span className="text-sm font-normal">{profile.name}</span>
+              <span className="text-xs text-muted">
+                {profile.skinType} · Type {profile.fitzpatrick}
+              </span>
             </span>
-          </span>
-        </Link>
+          </Link>
+          <form action="/auth/signout" method="POST">
+            <button
+              type="submit"
+              className="caps rounded-[4px] px-2 py-1 text-[11px] text-muted hover:text-venice hover:bg-rock-tint cursor-pointer border-0 bg-transparent"
+              title="Sign out"
+            >
+              Sign out
+            </button>
+          </form>
+        </div>
       </div>
     </nav>
   );

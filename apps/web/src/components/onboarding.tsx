@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { Dermi } from "@/components/dermi";
@@ -10,11 +11,13 @@ import {
   Button,
   cx,
   fieldLabelClass,
-  LinkButton,
   OptionCard,
   ToggleChip,
   underlineInputClass,
 } from "@/components/ui";
+import { hasPublicEnv } from "@/lib/env.public";
+import { createClient } from "@/lib/supabase/client";
+import type { FitzpatrickTone, SkinType } from "@/lib/supabase/database.types";
 
 const STEP_LABELS = ["Skin type", "Skin tone", "Allergies", "Products & medications", "Concerns"];
 
@@ -77,9 +80,11 @@ function toggleIn(list: string[], v: string) {
 const h1 =
   "display m-0 text-[36px] leading-[1.05] tracking-[-0.03em] text-venice sm:text-[52px]";
 
-/** Five-step skin profile (design/screens/Onboarding.dc.html). Saves to Supabase `profiles` later. */
+/** Five-step skin profile (design/screens/Onboarding.dc.html). Saves to Supabase `profiles`. */
 export function OnboardingView({ initialStep = 1 }: { initialStep?: number }) {
+  const router = useRouter();
   const [step, setStep] = useState(initialStep);
+  const [saving, setSaving] = useState(false);
   const [skinType, setSkinType] = useState("combination");
   const [tone, setTone] = useState(4);
   const [allergies, setAllergies] = useState(["Fragrance"]);
@@ -100,6 +105,41 @@ export function OnboardingView({ initialStep = 1 }: { initialStep?: number }) {
     if (!name) return;
     setProducts((p) => [...p, { kind: "Product", name, when: "Daily" }]);
     setDraft("");
+  };
+
+  const handleFinish = async () => {
+    if (!hasPublicEnv()) {
+      router.push("/dashboard");
+      return;
+    }
+
+    try {
+      setSaving(true);
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) {
+        const toneCode = TONES[tone - 1]?.[2] as FitzpatrickTone | undefined;
+        await supabase
+          .from("profiles")
+          .update({
+            skin_type: skinType as SkinType,
+            fitzpatrick_tone: toneCode ?? "IV",
+            allergies,
+            medications: products.map((p) => `${p.kind}: ${p.name} (${p.when})`),
+            concerns,
+            updated_at: new Date().toISOString(),
+          })
+          .eq("id", user.id);
+      }
+    } catch (err) {
+      console.error("Failed to update profile", err);
+    } finally {
+      setSaving(false);
+      router.push("/dashboard");
+    }
   };
 
   return (
@@ -321,9 +361,9 @@ export function OnboardingView({ initialStep = 1 }: { initialStep?: number }) {
                   Continue <Arrow />
                 </Button>
               ) : (
-                <LinkButton href="/dashboard" className="min-h-[52px] px-[26px]">
-                  Finish &amp; meet Dermi <Arrow />
-                </LinkButton>
+                <Button onClick={handleFinish} disabled={saving} className="min-h-[52px] px-[26px]">
+                  {saving ? "Saving…" : "Finish & meet Dermi"} <Arrow />
+                </Button>
               )}
             </div>
           </div>

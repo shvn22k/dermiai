@@ -5,22 +5,108 @@ import { Dermi } from "@/components/dermi";
 import { Greeting, TodayLabel } from "@/components/greeting";
 import { TodayReminders } from "@/components/today";
 import { Arrow, Avatar, LinkButton } from "@/components/ui";
-import { cases, profile, reminders, todayReminderIds } from "@/lib/demo";
+import { cases as demoCases, profile as demoProfile, reminders as demoReminders, todayReminderIds } from "@/lib/demo";
+import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = { title: "Dashboard" };
 
 type Props = { searchParams: Promise<{ preview?: string }> };
 
-/** Dashboard (design/screens/Dashboard, DashboardEmpty, DashboardMobile). `?preview=empty` shows the empty state. */
+/** Dashboard (design/screens/Dashboard, DashboardEmpty, DashboardMobile). */
 export default async function DashboardPage({ searchParams }: Props) {
   const { preview } = await searchParams;
-  const myCases = preview === "empty" ? [] : cases;
-  const today = preview === "empty" ? [] : reminders.filter((r) => todayReminderIds.includes(r.id));
 
-  return myCases.length === 0 ? <EmptyDashboard /> : <FullDashboard today={today} />;
+  let currentProfile = demoProfile;
+  let myCases = preview === "empty" ? [] : demoCases;
+  let today = preview === "empty" ? [] : demoReminders.filter((r) => todayReminderIds.includes(r.id));
+
+  // If preview is not forced to empty or demo, attempt to load live user data from Supabase
+  if (preview !== "demo" && preview !== "empty") {
+    try {
+      const supabase = await createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) {
+        const { data: dbProfile } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", user.id)
+          .maybeSingle();
+
+        if (dbProfile) {
+          const fullName = dbProfile.full_name || user.email?.split("@")[0] || "Friend";
+          const firstName = dbProfile.first_name || fullName.split(" ")[0] || "Friend";
+          currentProfile = {
+            name: fullName,
+            firstName,
+            initials: (firstName[0] || "D").toUpperCase(),
+            skinType: dbProfile.skin_type || "Normal",
+            fitzpatrick: dbProfile.fitzpatrick_tone || "IV",
+            allergies: dbProfile.allergies || [],
+          };
+        }
+
+        const { data: dbCases } = await supabase
+          .from("cases")
+          .select("*, case_images(id)")
+          .order("updated_at", { ascending: false });
+
+        if (dbCases) {
+          myCases = dbCases.map((c) => ({
+            id: c.id,
+            name: c.title,
+            area: c.body_site,
+            photos: c.case_images ? c.case_images.length : 0,
+            status: c.status,
+            updated: new Date(c.updated_at).toLocaleDateString("en-GB", {
+              day: "numeric",
+              month: "short",
+            }),
+            angle: c.placeholder_angle,
+          }));
+        }
+
+        const { data: dbReminders } = await supabase
+          .from("reminders")
+          .select("*, cases(title)")
+          .eq("enabled", true)
+          .order("time", { ascending: true });
+
+        if (dbReminders) {
+          today = dbReminders.map((r) => ({
+            id: r.id,
+            title: r.title,
+            time: r.time,
+            repeat: r.repeat_pattern,
+            meta: r.meta || undefined,
+            caseLabel: r.cases?.title?.split(" ").at(-1),
+            enabled: r.enabled,
+          }));
+        }
+      }
+    } catch {
+      // Fallback gracefully to demo data if offline / env misconfigured
+    }
+  }
+
+  return myCases.length === 0 ? (
+    <EmptyDashboard profile={currentProfile} />
+  ) : (
+    <FullDashboard profile={currentProfile} casesList={myCases} today={today} />
+  );
 }
 
-function FullDashboard({ today }: { today: typeof reminders }) {
+function FullDashboard({
+  profile,
+  casesList,
+  today,
+}: {
+  profile: typeof demoProfile;
+  casesList: typeof demoCases;
+  today: typeof demoReminders;
+}) {
   return (
     <>
       <div className="flex items-start justify-between gap-3 sm:hidden">
@@ -44,8 +130,7 @@ function FullDashboard({ today }: { today: typeof reminders }) {
           <div className="flex items-end gap-3">
             <Dermi size={72} body="#F5EEDD" className="sm:hidden" />
             <p className="m-0 max-w-[540px] text-[15px] leading-relaxed text-ink sm:text-[17px]">
-              Your forearm patch looked calmer in yesterday&apos;s photo. Keep the new lotion aside,
-              and I&apos;ll check in again tonight.
+              Keep your skin calm and hydrated today. I&apos;m here whenever you need a consultation or routine check.
             </p>
           </div>
         </div>
@@ -58,17 +143,17 @@ function FullDashboard({ today }: { today: typeof reminders }) {
 
       <div className="flex flex-wrap items-start gap-10">
         <div className="min-w-0 flex-[999_1_520px]">
-          <CaseList cases={cases} heading="Your cases" />
+          <CaseList cases={casesList} heading="Recent cases" />
         </div>
-        <aside className="flex-[1_1_320px] max-lg:order-first">
-          <TodayReminders items={today} initialDone={["m1"]} />
-        </aside>
+        <div className="min-w-0 flex-[1_1_320px]">
+          <TodayReminders items={today} />
+        </div>
       </div>
     </>
   );
 }
 
-function EmptyDashboard() {
+function EmptyDashboard({ profile }: { profile: typeof demoProfile }) {
   return (
     <>
       <div className="flex flex-col gap-2 border-b border-venice pb-5">
