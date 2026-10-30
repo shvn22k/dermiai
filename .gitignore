@@ -69,6 +69,7 @@ out/
 .vercel/
 next-env.d.ts
 *.tsbuildinfo
+AGENTS.md
 
 # ============================================================ INFRA
 .terraform/

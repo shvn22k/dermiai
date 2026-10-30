@@ -193,16 +193,15 @@ export default function LandingPage() {
         >
           <span>© 2026 DermiAI</span>
           <nav aria-label="Footer" className="flex gap-[22px]">
-            {/* Pages not designed yet */}
-            <a href="#" className="no-underline">
+            <Link href="/privacy" className="no-underline">
               Privacy
-            </a>
-            <a href="#" className="no-underline">
+            </Link>
+            <Link href="/terms" className="no-underline">
               Terms
-            </a>
-            <a href="#" className="no-underline">
+            </Link>
+            <Link href="/contact" className="no-underline">
               Contact
-            </a>
+            </Link>
           </nav>
           <span>Not a substitute for medical advice</span>
         </div>
